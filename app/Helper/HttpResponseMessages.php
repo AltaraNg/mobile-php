@@ -2,7 +2,9 @@
 
 namespace App\Helper;
 
-class HttpResponseMessages extends Enum
+use App\Enums\BaseEnum;
+
+class HttpResponseMessages extends BaseEnum
 {
     const INVALID_REQUEST = 'Invalid Request.';
     const SESSION_ID_REQUIRED = 'Session Id is required.';

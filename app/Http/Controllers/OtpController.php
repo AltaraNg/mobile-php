@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SendOtpRequest;
 use App\Services\MessageService;
+use App\Services\OtpService;
 
 class OtpController extends Controller
 {
-    public function sendOtp(SendOtpRequest $request, MessageService $messageService)
+
+
+    public function __construct(private MessageService $messageService, private OtpService $otpService)
     {
-        $res = $messageService->sendMessage('07086556010', 'hello');
-        dd($res);
+
+    }
+
+    public function sendOtp(SendOtpRequest $request)
+    {
+        $otp = $this->otpService->generate($request->phone_number);
+        dd($otp);
+//        dd($res);
     }
 }

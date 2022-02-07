@@ -19,8 +19,6 @@ class CreateOtpsTable extends Migration
             $table->string('token');
             $table->integer('validity');
             $table->boolean('expired')->default(false);
-            $table->integer('no_times_generated')->nullable()->default(0);
-            $table->integer('no_times_attempted')->nullable()->default(0);
             $table->timestamp('generated_at');
             $table->timestamps();
         });

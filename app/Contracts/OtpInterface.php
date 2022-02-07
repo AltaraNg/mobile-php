@@ -20,10 +20,6 @@ interface OtpInterface
      */
     public function validate(string $identifier, string $token): object;
 
-    /**
-     * @return string
-     */
-    public function createPin(): string;
 
     /**
      * @return bool

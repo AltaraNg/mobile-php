@@ -2,7 +2,9 @@
 
 namespace App\Helper;
 
-class HttpResponseCodes extends  
+use App\Enums\BaseEnum;
+
+class HttpResponseCodes extends  BaseEnum
 {
 
     //    System and generic error codes

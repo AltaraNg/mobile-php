@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/logout', [AuthenticationController::class, 'logout']);
         });
     });
-});
-
-Route::middleware('auth:api')->prefix('v1')->group(function () {
+    Route::prefix('otp')->group(function () {
+        Route::post('generate', [OtpController::class, 'generate'])->name('otp.generate');
+    });
 });

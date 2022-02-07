@@ -11,12 +11,14 @@ class OtpService implements OtpInterface
     private bool $onlyDigits;
     private int $validity;
     private int $deleteOldOtps;
+    private int $numberOfRetries;
 
     public function __construct()
     {
         $this->onlyDigits = false;
         $this->validity = 1440; // 24 hrs converted to minutes
         $this->deleteOldOtps = 1440;
+        // $this->$numberOfRetries = 0;
     }
 
     public function generate(string $identifier): object
@@ -75,7 +77,7 @@ class OtpService implements OtpInterface
         ];
     }
 
-    public function createPin(): string
+    private function createPin(): string
     {
         if ($this->onlyDigits) {
             $characters = '0123456789';

@@ -9,4 +9,5 @@ use Laravel\Sanctum\HasApiTokens;
 class Customer extends Authenticatable
 {
     use HasFactory,  HasApiTokens;
+    protected $guard = 'customer';
 }

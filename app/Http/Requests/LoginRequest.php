@@ -25,7 +25,8 @@ class LoginRequest extends FormRequest
     {
         return [
             'phone_number' => ['required', 'string'],
-            'otp' => ['required', 'string', 'min:4']
+            'otp' => ['required', 'string', 'min:4'],
+            'device_name' => ['required', 'string']
         ];
     }
 }

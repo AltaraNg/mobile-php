@@ -7,6 +7,13 @@ use App\Http\Requests\SendOtpRequest;
 use App\Services\MessageService;
 use App\Services\OtpService;
 
+/**
+ * @group Otp
+ * 
+ * Api Endpoints for sending otp
+ * 
+ */
+
 class OtpController extends Controller
 {
 
@@ -14,6 +21,12 @@ class OtpController extends Controller
     public function __construct(private MessageService $messageService, private OtpService $otpService)
     {
     }
+    /**
+     * Send Otp 
+     * 
+     * Send otp to the provided email address.
+     * 
+     */
     public function sendOtp(SendOtpRequest $request)
     {
         $otp = $this->otpService->generate($request->phone_number);
@@ -26,6 +39,6 @@ class OtpController extends Controller
         if ($messageStatus->groupName != 'Success') {
             return $this->sendError($messageStatus->description, HttpResponseCodes::ACTION_FAILED);
         }
-        return $this->sendSuccess([], 'Otp has been successfully sent'.$messageStatus->groupName);
+        return $this->sendSuccess([], 'Otp has been successfully sent' . $messageStatus->groupName);
     }
 }

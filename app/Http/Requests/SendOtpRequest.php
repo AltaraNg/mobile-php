@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @bodyParam phone_number string required The customer phone number.
+ * @bodyParam regenerate boolean  Pass this to regenerate otp code for users if previous one has expired 
+ */
 class SendOtpRequest extends FormRequest
 {
     /**

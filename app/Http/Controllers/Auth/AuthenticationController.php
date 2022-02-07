@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Auth;
 use App\Helper\HttpResponseCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
-use App\Models\User;
 use App\Services\OtpService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Authentication
+ *
+ * API endpoints for managing authentication
+ */
 class AuthenticationController extends Controller
 {
 
@@ -20,6 +22,12 @@ class AuthenticationController extends Controller
     {
     }
 
+    /**
+     * Login
+     * 
+     * Log customer in using the provided phone number and otp
+     * 
+     */
     public function login(LoginRequest $request)
     {
         $customer = Customer::where('telephone', $request->phone_number)->first();
@@ -33,7 +41,7 @@ class AuthenticationController extends Controller
         $token = $customer->createToken($request->device_name)->plainTextToken;
         $data = [
             'token' => $token,
-            'user' => $customer,
+            'user' => new CustomerResource($customer),
         ];
         return $this->sendSuccess($data, 'Logged in successfully');
     }
@@ -41,22 +49,32 @@ class AuthenticationController extends Controller
 
 
     /**
-     * Log user out of the app
+     * Logout 
+     * 
+     * Log customer out of the app
+     * 
+     * @authenticated
+     * 
      */
 
-    public function logout(Request $request)
+    public function logout()
     {
         auth()->user()->tokens()->delete();
-        return $this->sendSuccess(['Successfully logged out'], HttpResponseCodes::ACTION_SUCCESSFUL);
+        return $this->sendSuccess([], 'Successfully logged out');
     }
 
 
     /**
+     * 
+     * Authenticated Customer
+     * 
      * Get authenticated user profile
+     * 
+     * @authenticated
+     * 
      */
     public function user()
     {
-        return auth()->user();
-        // return $this->sendSuccess([new UserResource($user)]);
+        return $this->sendSuccess([new CustomerResource(auth()->user())], 'Customer profile fetched');
     }
 }

@@ -14,7 +14,6 @@ class OtpController extends Controller
     public function __construct(private MessageService $messageService, private OtpService $otpService)
     {
     }
- // ddd($messageStatus->groupName);
     public function sendOtp(SendOtpRequest $request)
     {
         $otp = $this->otpService->generate($request->phone_number);

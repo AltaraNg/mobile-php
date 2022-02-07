@@ -56,7 +56,6 @@ class AuthenticationController extends Controller
      * @authenticated
      * 
      */
-
     public function logout()
     {
         auth()->user()->tokens()->delete();

@@ -25,6 +25,7 @@ class SendOtpRequest extends FormRequest
     {
         return [
             'phone_number' => ['required', 'string'],
+            'regenerate' => ['nullable', 'bool']
         ];
     }
 }

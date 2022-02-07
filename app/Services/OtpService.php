@@ -3,22 +3,21 @@
 namespace App\Services;
 
 use App\Contracts\OtpInterface;
+use App\Helper\HttpResponseMessages;
 use App\Models\Otp as OtpModel;
 use Carbon\Carbon;
 
 class OtpService implements OtpInterface
 {
-    private bool $onlyDigits;
-    private int $validity;
-    private int $deleteOldOtps;
-    private int $numberOfRetries;
 
-    public function __construct()
-    {
-        $this->onlyDigits = false;
-        $this->validity = 1440; // 24 hrs converted to minutes
-        $this->deleteOldOtps = 1440;
-        // $this->$numberOfRetries = 0;
+
+    public function __construct(
+        private  int $length = 4,
+        private bool $onlyDigits = true,
+        private int $validity = 1440,
+        private int $numberOfRetries = 6,
+        private int $deleteOldOtps = 1440,
+    ) {
     }
 
     public function generate(string $identifier): object
@@ -28,11 +27,17 @@ class OtpService implements OtpInterface
         if ($otp == null) {
             $otp = OtpModel::create([
                 'identifier' => $identifier,
-                'otp' => $this->createPin(),
+                'token' => $this->createPin(),
                 'validity' => $this->validity,
                 'generated_at' => Carbon::now(),
             ]);
         } else {
+            if (!$otp->isExpired() && !request()->regenerate) {
+                return (object)[
+                    'status' => false,
+                    'message' => 'Please check your message, you have an otp that expires in: ' . $otp->expiresIn(),
+                ];
+            }
             $otp->update([
                 'identifier' => $identifier,
                 'token' => $this->createPin(),
@@ -44,6 +49,7 @@ class OtpService implements OtpInterface
             'status' => true,
             'otp' => $otp->token,
             'message' => "OTP generated",
+            'expires_in' => $otp->expiresIn(),
         ];
     }
 
@@ -54,14 +60,14 @@ class OtpService implements OtpInterface
         if (!$otp) {
             return (object)[
                 'status' => false,
-                'message' => 'OTP does not exists, Please generate new OTP',
+                'message' => HttpResponseMessages::OTP_NOT_FOUND,
             ];
         }
 
         if ($otp->isExpired()) {
             return (object)[
                 'status' => false,
-                'message' => 'OTP is expired',
+                'message' => HttpResponseMessages::OTP_TIME_OUT,
             ];
         }
 

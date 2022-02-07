@@ -33,11 +33,16 @@ class HttpResponseMessages extends BaseEnum
     const ACTION_SUCCESSFUL = 'Requested action is successfully performed';
     const CONTACT_METHOD_NOT_SELECTED = "You have not selected contact method";
 
-    const OTP_TIME_OUT = "Otp verification window (10 minutes) time out";
-    const OTP_NOT_FOUND = "OTP does not exists, Please generate new OTP";
+    const OTP_TIME_OUT = "Otp verification window (24 hrs) time out";
+    const OTP_NOT_FOUND = "Otp does not exists, Please generate new OTP";
+    const USER_NOT_PHONE_NUMBER_EXIST = 'User with this phone number does not exist. Kindly confirm or contact admin.';
 
     public static function NotFound($resource): string
     {
         return "Sorry, the $resource cannot be found.";
+    }
+    public static function otpTimedOut($minutes): string
+    {
+        return "Otp verification window ($minutes minutes) time out";
     }
 }

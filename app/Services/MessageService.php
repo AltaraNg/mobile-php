@@ -15,6 +15,7 @@ class MessageService
     {
         $receiver = $this->appendPrefix($receiver);
         $isInProduction = App::environment() === 'production';
+     
         if (!$isInProduction) {
             $num = rand(0, 1);
             if ($num > 0.5) {
@@ -29,7 +30,7 @@ class MessageService
             'SMSText' => $message,
             'GSM' => $receiver,
             'type' => 'longSMS',
-        ]);
+        ])->body();
         $response = (int)preg_replace('/[^0-9]/', '', $data);
         $res_message = match ($data) {
             -1 => 'Send_Error',
@@ -87,7 +88,7 @@ class MessageService
                 0 => [
                     "status" => [
                         "groupId" => 1,
-                        "groupName" => "PENDING ",
+                        "groupName" => "Success",
                         "id" => 7,
                         "name" => "PENDING_ENROUTE",
                         "description" => "Message has been processed and sent to the next instance",

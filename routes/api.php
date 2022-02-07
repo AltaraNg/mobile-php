@@ -29,6 +29,6 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::prefix('otp')->group(function () {
-        Route::post('generate', [OtpController::class, 'generate'])->name('otp.generate');
+        Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');
     });
 });

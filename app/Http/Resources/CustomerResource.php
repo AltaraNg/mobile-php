@@ -16,7 +16,7 @@ class CustomerResource extends JsonResource
     {
         return [
             'id' => (string) $this->id,
-            'type' => 'posts',
+            'type' => 'customers',
             'attributes' => [
                 'first_name' => $this->first_name,
                 'middle_name' => $this->middle_name,

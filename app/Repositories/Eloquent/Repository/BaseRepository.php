@@ -56,7 +56,7 @@ class BaseRepository implements \App\Repositories\Eloquent\Contracts\EloquentRep
      */
     public function findOnlyTrashedById(int $modelId): ?Model
     {
-        return $this->model->onlyTrashed()->findorFail($modelId);
+        return $this->model->onlyTrashed()->findOrFail($modelId);
     }
 
     /**

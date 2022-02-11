@@ -8,7 +8,6 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use App\Services\OtpService;
-use Illuminate\Http\Request;
 
 /**
  * @group Authentication
@@ -18,15 +17,18 @@ use Illuminate\Http\Request;
 class AuthenticationController extends Controller
 {
 
-    public function __construct(private OtpService $otpService)
+    private $otpService;
+
+    public function __construct(OtpService $otpService)
     {
+        $this->otpService = $otpService;
     }
 
     /**
      * Login
-     * 
+     *
      * Log customer in using the provided phone number and otp
-     * 
+     *
      */
     public function login(LoginRequest $request)
     {
@@ -47,14 +49,13 @@ class AuthenticationController extends Controller
     }
 
 
-
     /**
-     * Logout 
-     * 
+     * Logout
+     *
      * Log customer out of the app
-     * 
+     *
      * @authenticated
-     * 
+     *
      */
     public function logout()
     {
@@ -64,13 +65,13 @@ class AuthenticationController extends Controller
 
 
     /**
-     * 
+     *
      * Authenticated Customer
-     * 
+     *
      * Get authenticated user profile
-     * 
+     *
      * @authenticated
-     * 
+     *
      */
     public function user()
     {

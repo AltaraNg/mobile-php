@@ -11,13 +11,25 @@ class OtpService implements OtpInterface
 {
 
 
+    private $length = 4;
+    private $onlyDigits = true;
+    private $validity = 1440;
+    private $numberOfRetries = 6;
+    private $deleteOldOtps = 1440;
+
     public function __construct(
-        private  int $length = 4,
-        private bool $onlyDigits = true,
-        private int $validity = 1440,
-        private int $numberOfRetries = 6,
-        private int $deleteOldOtps = 1440,
-    ) {
+        int  $length = 4,
+        bool $onlyDigits = true,
+        int  $validity = 1440,
+        int  $numberOfRetries = 6,
+        int  $deleteOldOtps = 1440
+    )
+    {
+        $this->deleteOldOtps = $deleteOldOtps;
+        $this->numberOfRetries = $numberOfRetries;
+        $this->validity = $validity;
+        $this->onlyDigits = $onlyDigits;
+        $this->length = $length;
     }
 
     public function generate(string $identifier): object

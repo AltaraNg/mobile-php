@@ -22,14 +22,14 @@ endpoints:
         name: phone_number
         description: 'The customer phone number.'
         required: true
-        example: aliquid
+        example: aut
         type: string
         custom: []
       regenerate:
         name: regenerate
         description: 'Pass this to regenerate otp code for users if previous one has expired'
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
     responses: []

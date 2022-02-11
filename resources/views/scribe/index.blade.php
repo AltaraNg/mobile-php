@@ -70,16 +70,6 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="otp">
-                    <a href="#otp">Otp</a>
-                </li>
-                                    <ul id="tocify-subheader-otp" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="otp-POSTapi-v1-otp-send">
-                        <a href="#otp-POSTapi-v1-otp-send">Send Otp</a>
-                    </li>
-                                                    </ul>
-                            </ul>
-                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentication">
                     <a href="#authentication">Authentication</a>
                 </li>
@@ -95,13 +85,23 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="endpoints">
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
                         <a href="#endpoints-GETapi-user">GET api/user</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="otp">
+                    <a href="#otp">Otp</a>
+                </li>
+                                    <ul id="tocify-subheader-otp" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="otp-POSTapi-v1-otp-send">
+                        <a href="#otp-POSTapi-v1-otp-send">Send Otp</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -115,7 +115,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 7 2022</li>
+        <li>Last updated: February 11 2022</li>
     </ul>
 </div>
 
@@ -134,131 +134,6 @@ You can switch the language used with the tabs at the top right (or from the nav
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
-
-        <h1 id="otp">Otp</h1>
-
-    <p>Api Endpoints for sending otp</p>
-
-            <h2 id="otp-POSTapi-v1-otp-send">Send Otp</h2>
-
-<p>
-</p>
-
-<p>Send otp to the provided email address.</p>
-
-<span id="example-requests-POSTapi-v1-otp-send">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/otp/send" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"phone_number\": \"aliquid\",
-    \"regenerate\": false
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/otp/send"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "phone_number": "aliquid",
-    "regenerate": false
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-otp-send">
-</span>
-<span id="execution-results-POSTapi-v1-otp-send" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-otp-send"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-otp-send"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-otp-send" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-otp-send"></code></pre>
-</span>
-<form id="form-POSTapi-v1-otp-send" data-method="POST"
-      data-path="api/v1/otp/send"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-otp-send', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-otp-send"
-                    onclick="tryItOut('POSTapi-v1-otp-send');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-otp-send"
-                    onclick="cancelTryOut('POSTapi-v1-otp-send');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-otp-send" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/otp/send</code></b>
-        </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>phone_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="phone_number"
-               data-endpoint="POSTapi-v1-otp-send"
-               value="aliquid"
-               data-component="body" hidden>
-    <br>
-<p>The customer phone number.</p>
-        </p>
-                <p>
-            <b><code>regenerate</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
-                <label data-endpoint="POSTapi-v1-otp-send" hidden>
-            <input type="radio" name="regenerate"
-                   value="true"
-                   data-endpoint="POSTapi-v1-otp-send"
-                   data-component="body"
-            >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTapi-v1-otp-send" hidden>
-            <input type="radio" name="regenerate"
-                   value="false"
-                   data-endpoint="POSTapi-v1-otp-send"
-                   data-component="body"
-            >
-            <code>false</code>
-        </label>
-    <br>
-<p>Pass this to regenerate otp code for users if previous one has expired</p>
-        </p>
-        </form>
 
         <h1 id="authentication">Authentication</h1>
 
@@ -281,9 +156,9 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"maiores\",
-    \"otp\": \"rem\",
-    \"device_name\": \"numquam\"
+    \"phone_number\": \"est\",
+    \"otp\": \"ducimus\",
+    \"device_name\": \"illum\"
 }"
 </code></pre></div>
 
@@ -299,9 +174,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "maiores",
-    "otp": "rem",
-    "device_name": "numquam"
+    "phone_number": "est",
+    "otp": "ducimus",
+    "device_name": "illum"
 };
 
 fetch(url, {
@@ -359,7 +234,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="maiores"
+               value="est"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -369,7 +244,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="rem"
+               value="ducimus"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -379,7 +254,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="numquam"
+               value="illum"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -710,6 +585,131 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
             <b><code>api/user</code></b>
         </p>
                     </form>
+
+        <h1 id="otp">Otp</h1>
+
+    <p>Api Endpoints for sending otp</p>
+
+            <h2 id="otp-POSTapi-v1-otp-send">Send Otp</h2>
+
+<p>
+</p>
+
+<p>Send otp to the provided email address.</p>
+
+<span id="example-requests-POSTapi-v1-otp-send">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/otp/send" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"phone_number\": \"aut\",
+    \"regenerate\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/otp/send"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "phone_number": "aut",
+    "regenerate": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-otp-send">
+</span>
+<span id="execution-results-POSTapi-v1-otp-send" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-otp-send"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-otp-send"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-otp-send" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-otp-send"></code></pre>
+</span>
+<form id="form-POSTapi-v1-otp-send" data-method="POST"
+      data-path="api/v1/otp/send"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-otp-send', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-otp-send"
+                    onclick="tryItOut('POSTapi-v1-otp-send');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-otp-send"
+                    onclick="cancelTryOut('POSTapi-v1-otp-send');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-otp-send" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/otp/send</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>phone_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="phone_number"
+               data-endpoint="POSTapi-v1-otp-send"
+               value="aut"
+               data-component="body" hidden>
+    <br>
+<p>The customer phone number.</p>
+        </p>
+                <p>
+            <b><code>regenerate</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-v1-otp-send" hidden>
+            <input type="radio" name="regenerate"
+                   value="true"
+                   data-endpoint="POSTapi-v1-otp-send"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-otp-send" hidden>
+            <input type="radio" name="regenerate"
+                   value="false"
+                   data-endpoint="POSTapi-v1-otp-send"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>Pass this to regenerate otp code for users if previous one has expired</p>
+        </p>
+        </form>
 
     
 

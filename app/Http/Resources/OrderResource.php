@@ -16,13 +16,18 @@ class OrderResource extends JsonResource
     {
         return [
             'id' => (string)$this->id,
-            'type' => 'customers',
+            'type' => 'orders',
             'attributes' => [
-                
+                'order_number' => $this->order_number,
+                'order_date' => $this->order_date,
+                'product_price' => $this->product_price,
+                'down_payment' => $this->down_payment,
+                'repayment' => $this->repayment,
             ],
             'relationships' => [],
             'included' => [
                 'amortizations' => $this->amortizations,
+                'product' => $this->product,
             ]
         ];
     }

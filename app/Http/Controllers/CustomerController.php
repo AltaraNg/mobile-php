@@ -7,10 +7,9 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
-use Illuminate\Http\Request;
 
 /**
- * @group Otp
+ * @group Customer
  *
  * Api Endpoints for Customer
  *
@@ -19,10 +18,12 @@ class CustomerController extends Controller
 {
     //
     private $customerRepository;
+
     public function __construct(CustomerRepository $customerRepository)
     {
         $this->customerRepository = $customerRepository;
     }
+
     /**
      * Update Profile
      *

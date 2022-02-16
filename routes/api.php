@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +29,10 @@ Route::prefix('v1')->group(function () {
             Route::get('/user', [AuthenticationController::class, 'user']);
             Route::get('/logout', [AuthenticationController::class, 'logout']);
         });
+    });
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::patch('/customers', [CustomerController::class, 'update'])->name('customer.update');
+        Route::get('/customers/{customer}/orders', [CustomerOrderController::class, 'show'])->name('customer.order.show');
     });
     Route::prefix('otp')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');

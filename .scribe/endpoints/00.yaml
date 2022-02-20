@@ -22,21 +22,21 @@ endpoints:
         name: phone_number
         description: 'The customer phone number.'
         required: true
-        example: maiores
+        example: repellat
         type: string
         custom: []
       otp:
         name: otp
         description: 'The otp sent to the customer phone number'
         required: true
-        example: rem
+        example: quo
         type: string
         custom: []
       device_name:
         name: device_name
         description: 'The customer device name been used'
         required: false
-        example: numquam
+        example: error
         type: required
         custom: []
     responses: []

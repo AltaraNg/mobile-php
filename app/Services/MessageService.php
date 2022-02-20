@@ -15,7 +15,7 @@ class MessageService
     {
         $receiver = $this->appendPrefix($receiver);
         $isInProduction = App::environment() === 'production';
-     
+
         if (!$isInProduction) {
             $num = rand(0, 1);
             if ($num > 0.5) {
@@ -32,19 +32,42 @@ class MessageService
             'type' => 'longSMS',
         ])->body();
         $response = (int)preg_replace('/[^0-9]/', '', $data);
-        $res_message = match ($data) {
-            -1 => 'Send_Error',
-            -2 => 'Not_Enough Credits',
-            -3 => 'Network_NotCovered',
-            -5 => 'Invalid user or password',
-            -6 => 'Missing destination address',
-            -7 => 'Missing SMS Text',
-            -8 => 'Missing sender name',
-            -9 => 'Invalid phone number format',
-            -10 => 'Missing Username',
-            -13 => 'Invalid phone number',
-            default => 'Successful, Message was sent',
-        };
+        $res_message = '';
+        switch ($data) {
+            case -1:
+                $res_message = "Send_Error";
+                break;
+            case -2:
+                $res_message = "Not_Enough Credits";
+                break;
+            case -3:
+                $res_message = "Network_NotCovered";
+                break;
+            case -5:
+                $res_message = "Invalid user or password";
+                break;
+            case -6:
+                $res_message = "Missing destination address";
+                break;
+            case -7:
+                $res_message = "Missing SMS Text";
+                break;
+            case -8:
+                $res_message = "Missing sender name";
+                break;
+            case -9:
+                $res_message = "Invalid phone number format";
+                break;
+            case -10:
+                $res_message = "Missing Username";
+                break;
+            case -13:
+                $res_message = "Invalid phone number";
+                break;
+            default:
+                $res_message = "Successful, Message was sent";
+                break;
+        }
 
         if ($data > 0) {
             return json_decode(json_encode([

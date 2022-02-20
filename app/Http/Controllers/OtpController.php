@@ -9,23 +9,28 @@ use App\Services\OtpService;
 
 /**
  * @group Otp
- * 
+ *
  * Api Endpoints for sending otp
- * 
+ *
  */
-
 class OtpController extends Controller
 {
 
 
-    public function __construct(private MessageService $messageService, private OtpService $otpService)
+    private $messageService;
+    private $otpService;
+
+    public function __construct(MessageService $messageService, OtpService $otpService)
     {
+        $this->otpService = $otpService;
+        $this->messageService = $messageService;
     }
+
     /**
-     * Send Otp 
-     * 
+     * Send Otp
+     *
      * Send otp to the provided email address.
-     * 
+     *
      */
     public function sendOtp(SendOtpRequest $request)
     {

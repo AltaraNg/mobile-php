@@ -8,7 +8,6 @@ use App\Models\Customer;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
 use App\Services\GoogleSheetService;
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
 
 /**
  * @group Customer Order
@@ -40,9 +39,11 @@ class CustomerOrderController extends Controller
     }
 
 
-    public function submitRequest(StoreOrderRequest $request,string $documentId)
+    public function submitRequest(StoreOrderRequest $request, string $documentId)
     {
         $customer = auth()->user();
+        $verification = $customer->verification;
+        dd($verification);
         $input = [
             'customer_id' => $customer->id,
             'name' => $customer->first_name . ' ' . $customer->last_name,
@@ -53,9 +54,10 @@ class CustomerOrderController extends Controller
         $data = [
             array_values($input)
         ];
-      $res =  $this->googleSheetService->appendSheet($data, $documentId);
-      if ($res->updates && $res->updates->updatedRows > 0) {
-          return 
-      }
+        $res =  $this->googleSheetService->appendSheet($data, $documentId);
+        if ($res->updates && $res->updates->updatedRows > 0) {
+            return $this->sendSuccess([], 'Order request has successfully been submitted');
+        }
+        return $this->sendError('Unable to submit order request, kindly contact admin', 500);
     }
 }

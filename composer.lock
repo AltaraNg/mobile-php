@@ -958,7 +958,7 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.235.0",
+            "version": "v0.236.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
@@ -996,7 +996,7 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.235.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.236.0"
             },
             "time": "2022-02-07T14:04:26+00:00"
         },
@@ -1443,16 +1443,16 @@
         },
         {
             "name": "knuckleswtf/scribe",
-            "version": "3.23.0",
+            "version": "3.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knuckleswtf/scribe.git",
-                "reference": "7a3d9feec5f0c1cdd68564e6237fffac2b36bba0"
+                "reference": "c5609a0e6d93e678b1049695b921698cb9ece0f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/7a3d9feec5f0c1cdd68564e6237fffac2b36bba0",
-                "reference": "7a3d9feec5f0c1cdd68564e6237fffac2b36bba0",
+                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/c5609a0e6d93e678b1049695b921698cb9ece0f2",
+                "reference": "c5609a0e6d93e678b1049695b921698cb9ece0f2",
                 "shasum": ""
             },
             "require": {
@@ -1527,7 +1527,7 @@
             ],
             "support": {
                 "issues": "https://github.com/knuckleswtf/scribe/issues",
-                "source": "https://github.com/knuckleswtf/scribe/tree/3.23.0"
+                "source": "https://github.com/knuckleswtf/scribe/tree/3.24.0"
             },
             "funding": [
                 {
@@ -1535,7 +1535,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-01-31T09:09:39+00:00"
+            "time": "2022-02-21T12:25:39+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7432,16 +7432,16 @@
         },
         {
             "name": "phar-io/version",
-            "version": "3.1.1",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/version.git",
-                "reference": "15a90844ad40f127afd244c0cad228de2a80052a"
+                "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/version/zipball/15a90844ad40f127afd244c0cad228de2a80052a",
-                "reference": "15a90844ad40f127afd244c0cad228de2a80052a",
+                "url": "https://api.github.com/repos/phar-io/version/zipball/4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+                "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
                 "shasum": ""
             },
             "require": {
@@ -7477,9 +7477,9 @@
             "description": "Library for handling version information and constraints",
             "support": {
                 "issues": "https://github.com/phar-io/version/issues",
-                "source": "https://github.com/phar-io/version/tree/3.1.1"
+                "source": "https://github.com/phar-io/version/tree/3.2.1"
             },
-            "time": "2022-02-07T21:56:48+00:00"
+            "time": "2022-02-21T01:04:05+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -9154,5 +9154,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

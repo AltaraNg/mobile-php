@@ -40,20 +40,22 @@ class CustomerOrderController extends Controller
     }
 
 
-    public function submitRequest(string $documentId)
+    public function submitRequest(StoreOrderRequest $request,string $documentId)
     {
         $customer = auth()->user();
         $input = [
             'customer_id' => $customer->id,
             'name' => $customer->first_name . ' ' . $customer->last_name,
             'phone_number' => $customer->telephone,
-            'order_type' => $request->order_t
+            'order_type' => $request->order_type,
             'request_date' => Carbon::now()->format('Y-m-d')
         ];
         $data = [
             array_values($input)
         ];
-        dd($data);
-        $this->googleSheetService->appendSheet($data, $documentId);
+      $res =  $this->googleSheetService->appendSheet($data, $documentId);
+      if ($res->updates && $res->updates->updatedRows > 0) {
+          return 
+      }
     }
 }

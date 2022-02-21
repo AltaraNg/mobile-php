@@ -24,7 +24,6 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
             'order_type' => ['required', 'string']
         ];
     }

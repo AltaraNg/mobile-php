@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
 use App\Services\GoogleSheetService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @group Customer Order
@@ -39,11 +40,15 @@ class CustomerOrderController extends Controller
     }
 
 
+    /**
+     * Apply for Orders
+     *
+     * This endpoint is used for applying for orders by customers
+     *
+     */
     public function submitRequest(StoreOrderRequest $request, string $documentId)
     {
-        $customer = auth()->user();
-        $verification = $customer->verification;
-        dd($verification);
+        $customer = auth()->user();   
         $input = [
             'customer_id' => $customer->id,
             'name' => $customer->first_name . ' ' . $customer->last_name,

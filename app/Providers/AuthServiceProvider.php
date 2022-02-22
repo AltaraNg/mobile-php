@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
+use App\Helper\HttpResponseCodes;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-
-use function Ramsey\Uuid\v1;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,14 +29,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('is-verfied', function (Customer $customer) {
+        Gate::define('verified', function (Customer $customer) {
             $verification = $customer->verification;
-           return collect($verification->toArray())
-            ->except(['id', 'cusmer_id', 'created_at', 'updated_at'])
-            ->every(function ($value)
-            {
-              $value > 0;
-            });
+            return collect($verification->toArray())
+                ->except(['id', 'customer_id', 'created_at', 'updated_at'])
+                ->every(function ($value) {
+                    return $value > 0;
+                })  ? Response::allow()
+                : Response::deny('Only verified accounts can place request, kindly get in touch with an admin of visit showroom for further details', HttpResponseCodes::PERMISSION_DENIED);;
         });
     }
 }

@@ -40,3 +40,34 @@ endpoints:
           access-control-allow-headers: 'X-Requested-With, Content-Type, Origin, Authorization'
         description: null
     responseFields: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/submit/request/{documentId}'
+    metadata:
+      title: 'Apply for Orders'
+      description: 'This endpoint is used for applying for orders by customers'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      documentId:
+        name: documentId
+        description: ''
+        required: true
+        example: debitis
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      order_type:
+        name: order_type
+        description: 'The type of product customer is requesting. Example Product or Loan'
+        required: true
+        example: dolor
+        type: string
+        custom: []
+    responses: []
+    responseFields: []

@@ -1,7 +1,5 @@
 name: 'Customer Order'
-description: |-
-
-  Api Endpoints for Customer orders
+description: ''
 endpoints:
   -
     httpMethods:
@@ -10,7 +8,7 @@ endpoints:
     metadata:
       title: 'All Customer Orders'
       description: 'This endpoint is used for fetching customer orders'
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -41,30 +39,23 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/submit/request/{documentId}'
+    uri: api/v1/submit/request
     metadata:
       title: 'Apply for Orders'
       description: 'This endpoint is used for applying for orders by customers'
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      documentId:
-        name: documentId
-        description: ''
-        required: true
-        example: debitis
-        type: string
-        custom: []
+    urlParameters: []
     queryParameters: []
     bodyParameters:
       order_type:
         name: order_type
         description: 'The type of product customer is requesting. Example Product or Loan'
         required: true
-        example: dolor
+        example: rerum
         type: string
         custom: []
     responses: []

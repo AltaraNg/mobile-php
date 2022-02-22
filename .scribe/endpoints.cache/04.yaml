@@ -24,14 +24,14 @@ endpoints:
         name: phone_number
         description: 'The customer phone number.'
         required: true
-        example: incidunt
+        example: sed
         type: string
         custom: []
       regenerate:
         name: regenerate
         description: 'Pass this to regenerate otp code for users if previous one has expired'
         required: false
-        example: true
+        example: false
         type: boolean
         custom: []
     responses: []

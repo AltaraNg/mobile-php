@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
                 ->every(function ($value) {
                     return $value > 0;
                 })  ? Response::allow()
-                : Response::deny('Only verified accounts can place request, kindly get in touch with an admin of visit showroom for further details', HttpResponseCodes::PERMISSION_DENIED);;
+                : Response::deny('Only verified accounts can place request, Visit the showroom for further details', HttpResponseCodes::PERMISSION_DENIED);;
         });
     }
 }

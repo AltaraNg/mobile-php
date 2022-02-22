@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Gate;
 
 /**
  * @group Customer Order
+ * 
+ * @authenticated
  *
- * Api Endpoints for Customer orders
- *
+ * Api Endpoints for Customer order
+ * 
  */
 class CustomerOrderController extends Controller
 {
@@ -46,7 +48,7 @@ class CustomerOrderController extends Controller
      * This endpoint is used for applying for orders by customers
      *
      */
-    public function submitRequest(StoreOrderRequest $request, string $documentId)
+    public function submitRequest(StoreOrderRequest $request)
     {
         $customer = auth()->user();   
         $input = [
@@ -59,7 +61,7 @@ class CustomerOrderController extends Controller
         $data = [
             array_values($input)
         ];
-        $res =  $this->googleSheetService->appendSheet($data, $documentId);
+        $res =  $this->googleSheetService->appendSheet($data, env('GOOGLE_SHEET_ORDER_REQUEST_DOCUMENT_ID'));
         if ($res->updates && $res->updates->updatedRows > 0) {
             return $this->sendSuccess([], 'Order request has successfully been submitted');
         }

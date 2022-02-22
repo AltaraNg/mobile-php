@@ -5,6 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * @bodyParam order_type string required The type of product customer is requesting. Example Product or Loan
+ */
 class StoreOrderRequest extends FormRequest
 {
     /**

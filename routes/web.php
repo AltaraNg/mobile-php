@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Events\SendBroadCastMessageEvent;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('guest') ->group(function () {
+Route::middleware('guest')->group(function () {
     Route::get('/', function () {
         return view('pages.login');
     })->name('login');
@@ -41,6 +41,14 @@ Route::middleware('auth:web')->group(function () {
     })->name('dashboard');
     Route::get('/dashboard/send', function () {
         return view('pages.send-message');
+    })->name('send-message.create');
+    Route::post('/dashboard/send', function (HttpRequest $request) {
+        $data = [
+            'subject' => $request->subject,
+            'message' => $request->message
+        ];
+        SendBroadCastMessageEvent::dispatch($data);
+        return back()->with('success', 'Message dispatched successfully!');
     })->name('send-message');
 
     Route::get('/logout', function (HttpRequest $request) {

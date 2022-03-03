@@ -48,7 +48,7 @@ class GoogleSheetService
 
         $client = new Client();
         $client->setApplicationName('Google Sheets API PHP Quickstart');
-        $client->setRedirectUri('http://127.0.0.1:8000/sheets');
+        $client->setRedirectUri(config('APP_URL'));
         $client->setScopes(Sheets::SPREADSHEETS);
         $client->setAuthConfig($this->getConfigs());
         $client->setAccessType('offline');

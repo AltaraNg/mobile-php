@@ -9,9 +9,9 @@ use App\Services\OtpService;
 
 /**
  * @group Otp
- *
+ * 
  * Api Endpoints for sending otp
- *
+ * 
  */
 class OtpController extends Controller
 {

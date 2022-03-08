@@ -1,6 +1,9 @@
 <?php
 
-use App\Events\SendBroadCastMessageEvent;
+
+use App\Http\Controllers\Admin\AuthenticationController;
+use App\Http\Controllers\Admin\BroadcastController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,43 +21,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        return view('pages.login');
-    })->name('login');
-    Route::post('/login', function (HttpRequest $request) {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        if (Auth::guard('web')->attempt($credentials)) {
-            return redirect()->intended('dashboard');
-        }
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
-    })->name('web-login');
+    Route::get('/', [AuthenticationController::class, 'viewLoginPage'])->name('login');
+    Route::post('/login', [AuthenticationController::class, 'login'])->name('web-login');
 });
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-    })->name('dashboard');
-    Route::get('/dashboard/send', function () {
-        return view('pages.send-message');
-    })->name('send-message.create');
-    Route::post('/dashboard/send', function (HttpRequest $request) {
-        $data = [
-            'subject' => $request->subject,
-            'message' => $request->message
-        ];
-        SendBroadCastMessageEvent::dispatch($data);
-        return back()->with('success', 'Message dispatched successfully!');
-    })->name('send-message');
-
-    Route::get('/logout', function (HttpRequest $request) {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
-    })->name('web-logout');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard/send',  [DashboardController::class, 'createMessage'])->name('send-message.create');
+    Route::post('/dashboard/send', [DashboardController::class, 'sendMessage'])->name('send-message');
+    Route::get('/dashboard/resend/{broadcast}', [DashboardController::class, 'resendMessage'])->name('resend-message');
+    Route::get('/logout',  [AuthenticationController::class, 'logout'])->name('web-logout');
+    Route::resource('broadcasts', BroadcastController::class);
 });

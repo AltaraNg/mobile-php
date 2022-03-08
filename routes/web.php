@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\SendBroadCastMessageEvent;
+use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('pages.login');
+    })->name('login');
+    Route::post('/login', function (HttpRequest $request) {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        if (Auth::guard('web')->attempt($credentials)) {
+            return redirect()->intended('dashboard');
+        }
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    })->name('web-login');
+});
+
+Route::middleware('auth:web')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard');
+    })->name('dashboard');
+    Route::get('/dashboard/send', function () {
+        return view('pages.send-message');
+    })->name('send-message.create');
+    Route::post('/dashboard/send', function (HttpRequest $request) {
+        $data = [
+            'subject' => $request->subject,
+            'message' => $request->message
+        ];
+        SendBroadCastMessageEvent::dispatch($data);
+        return back()->with('success', 'Message dispatched successfully!');
+    })->name('send-message');
+
+    Route::get('/logout', function (HttpRequest $request) {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    })->name('web-logout');
 });

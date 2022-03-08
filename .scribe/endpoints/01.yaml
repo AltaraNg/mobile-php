@@ -36,7 +36,7 @@ endpoints:
         name: telephone
         description: 'The customer phone number.'
         required: true
-        example: officiis
+        example: blanditiis
         type: string
         custom: []
       add_street:

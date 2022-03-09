@@ -31,7 +31,7 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::middleware('auth:sanctum')->group(function () {
-        Route::patch('/customers', [CustomerController::class, 'update'])->name('customer.update');
+        Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customer.update');
         Route::get('/customers/{customer}/orders', [CustomerOrderController::class, 'show'])->name('customer.order.show');
         Route::patch('/submit/request', [CustomerOrderController::class, 'submitRequest'])->name('customer.order.request');
     });

@@ -28,7 +28,9 @@ class CustomerController extends Controller
      * Update Profile
      *
      * This endpoint is used for updating the customer profiles.
-     *
+     * 
+     * @param Customer $customer
+     * 
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {

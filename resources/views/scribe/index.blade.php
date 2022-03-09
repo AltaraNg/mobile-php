@@ -179,9 +179,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"vitae\",
-    \"otp\": \"excepturi\",
-    \"device_name\": \"vel\"
+    \"phone_number\": \"qui\",
+    \"otp\": \"et\",
+    \"device_name\": \"aspernatur\"
 }"
 </code></pre></div>
 
@@ -197,9 +197,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "vitae",
-    "otp": "excepturi",
-    "device_name": "vel"
+    "phone_number": "qui",
+    "otp": "et",
+    "device_name": "aspernatur"
 };
 
 fetch(url, {
@@ -257,7 +257,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="vitae"
+               value="qui"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -267,7 +267,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="excepturi"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -277,7 +277,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="vel"
+               value="aspernatur"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -527,7 +527,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --data "{
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
-    \"telephone\": \"enim\",
+    \"telephone\": \"rerum\",
     \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\"
 }"
 </code></pre></div>
@@ -546,7 +546,7 @@ const headers = {
 let body = {
     "first_name": "John",
     "last_name": "Doe",
-    "telephone": "enim",
+    "telephone": "rerum",
     "add_street": "48 Ogunaike street, Ikoyi, Lagos State."
 };
 
@@ -636,7 +636,7 @@ fetch(url, {
                 <input type="text"
                name="telephone"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="enim"
+               value="rerum"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -796,7 +796,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"quia\"
+    \"order_type\": \"sed\"
 }"
 </code></pre></div>
 
@@ -812,7 +812,7 @@ const headers = {
 };
 
 let body = {
-    "order_type": "quia"
+    "order_type": "sed"
 };
 
 fetch(url, {
@@ -878,7 +878,7 @@ fetch(url, {
                 <input type="text"
                name="order_type"
                data-endpoint="PATCHapi-v1-submit-request"
-               value="quia"
+               value="sed"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
@@ -1011,7 +1011,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"perferendis\",
+    \"phone_number\": \"similique\",
     \"regenerate\": false
 }"
 </code></pre></div>
@@ -1028,7 +1028,7 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "perferendis",
+    "phone_number": "similique",
     "regenerate": false
 };
 
@@ -1087,7 +1087,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="perferendis"
+               value="similique"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

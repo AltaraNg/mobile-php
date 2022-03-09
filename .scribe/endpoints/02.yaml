@@ -55,7 +55,7 @@ endpoints:
         name: order_type
         description: 'The type of product customer is requesting. Example Product or Loan'
         required: true
-        example: quia
+        example: sed
         type: string
         custom: []
     responses: []

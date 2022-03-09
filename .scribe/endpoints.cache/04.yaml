@@ -24,7 +24,7 @@ endpoints:
         name: phone_number
         description: 'The customer phone number.'
         required: true
-        example: sed
+        example: perferendis
         type: string
         custom: []
       regenerate:

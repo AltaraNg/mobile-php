@@ -6,7 +6,7 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: api/v1/customers/{customer}
+    uri: 'api/v1/customers/{customer}'
     metadata:
       title: 'Update Profile'
       description: 'This endpoint is used for updating the customer profiles.'
@@ -43,7 +43,7 @@ endpoints:
         name: telephone
         description: 'The customer phone number.'
         required: true
-        example: blanditiis
+        example: enim
         type: string
         custom: []
       add_street:

@@ -12,6 +12,7 @@ class Customer extends Authenticatable
     use HasFactory, HasApiTokens;
 
     protected $guard = 'customer';
+    protected $guarded = [];
 
     public function orders(): HasMany
     {

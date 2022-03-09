@@ -6,7 +6,7 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: api/v1/customers
+    uri: api/v1/customers/{customer}
     metadata:
       title: 'Update Profile'
       description: 'This endpoint is used for updating the customer profiles.'
@@ -15,7 +15,14 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
+    urlParameters:
+      customer:
+        name: customer
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
     queryParameters: []
     bodyParameters:
       first_name:

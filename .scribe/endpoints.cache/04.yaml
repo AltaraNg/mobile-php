@@ -24,7 +24,7 @@ endpoints:
         name: phone_number
         description: 'The customer phone number.'
         required: true
-        example: perferendis
+        example: similique
         type: string
         custom: []
       regenerate:

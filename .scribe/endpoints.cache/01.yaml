@@ -45,7 +45,7 @@ endpoints:
         name: telephone
         description: 'The customer phone number.'
         required: true
-        example: enim
+        example: rerum
         type: string
         custom: []
       add_street:

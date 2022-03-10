@@ -24,7 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::get('/customers/{customer}/notifications', [CustomerNotificationController::class, 'show'])->name('customers.notifications.show');
     Route::prefix('auth')->group(function () {
         Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
         Route::middleware('auth:sanctum')->group(function () {
@@ -36,7 +35,7 @@ Route::prefix('v1')->group(function () {
         Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customer.update');
         Route::get('/customers/{customer}/orders', [CustomerOrderController::class, 'show'])->name('customer.order.show');
         Route::patch('/submit/request', [CustomerOrderController::class, 'submitRequest'])->name('customer.order.request');
-
+        Route::get('/customers/{customer}/notifications', [CustomerNotificationController::class, 'show'])->name('customers.notifications.show');
       
     });
     Route::prefix('otp')->group(function () {

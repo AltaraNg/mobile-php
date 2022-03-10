@@ -90,8 +90,8 @@
                     <a href="#customer">Customer</a>
                 </li>
                                     <ul id="tocify-subheader-customer" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="customer-PATCHapi-v1-customers">
-                        <a href="#customer-PATCHapi-v1-customers">Update Profile</a>
+                                                    <li class="tocify-item level-2" data-unique="customer-PATCHapi-v1-customers--customer-">
+                        <a href="#customer-PATCHapi-v1-customers--customer-">Update Profile</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -138,7 +138,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 22 2022</li>
+        <li>Last updated: March 9 2022</li>
     </ul>
 </div>
 
@@ -179,9 +179,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"tempora\",
-    \"otp\": \"tempora\",
-    \"device_name\": \"ut\"
+    \"phone_number\": \"qui\",
+    \"otp\": \"et\",
+    \"device_name\": \"aspernatur\"
 }"
 </code></pre></div>
 
@@ -197,9 +197,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "tempora",
-    "otp": "tempora",
-    "device_name": "ut"
+    "phone_number": "qui",
+    "otp": "et",
+    "device_name": "aspernatur"
 };
 
 fetch(url, {
@@ -257,7 +257,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="tempora"
+               value="qui"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -267,7 +267,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="tempora"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -277,7 +277,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="ut"
+               value="aspernatur"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -508,26 +508,26 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
     <p>Api Endpoints for Customer</p>
 
-            <h2 id="customer-PATCHapi-v1-customers">Update Profile</h2>
+            <h2 id="customer-PATCHapi-v1-customers--customer-">Update Profile</h2>
 
 <p>
 </p>
 
 <p>This endpoint is used for updating the customer profiles.</p>
 
-<span id="example-requests-PATCHapi-v1-customers">
+<span id="example-requests-PATCHapi-v1-customers--customer-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/customers" \
+    "http://localhost/api/v1/customers/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
-    \"telephone\": \"blanditiis\",
+    \"telephone\": \"rerum\",
     \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\"
 }"
 </code></pre></div>
@@ -535,7 +535,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/customers"
+    "http://localhost/api/v1/customers/1"
 );
 
 const headers = {
@@ -546,7 +546,7 @@ const headers = {
 let body = {
     "first_name": "John",
     "last_name": "Doe",
-    "telephone": "blanditiis",
+    "telephone": "rerum",
     "add_street": "48 Ogunaike street, Ikoyi, Lagos State."
 };
 
@@ -558,53 +558,64 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PATCHapi-v1-customers">
+<span id="example-responses-PATCHapi-v1-customers--customer-">
 </span>
-<span id="execution-results-PATCHapi-v1-customers" hidden>
+<span id="execution-results-PATCHapi-v1-customers--customer-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-v1-customers"></span>:
+                id="execution-response-status-PATCHapi-v1-customers--customer-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-v1-customers"></code></pre>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-customers--customer-"></code></pre>
 </span>
-<span id="execution-error-PATCHapi-v1-customers" hidden>
+<span id="execution-error-PATCHapi-v1-customers--customer-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-v1-customers"></code></pre>
+    <pre><code id="execution-error-message-PATCHapi-v1-customers--customer-"></code></pre>
 </span>
-<form id="form-PATCHapi-v1-customers" data-method="PATCH"
-      data-path="api/v1/customers"
+<form id="form-PATCHapi-v1-customers--customer-" data-method="PATCH"
+      data-path="api/v1/customers/{customer}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-customers', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-customers--customer-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-customers"
-                    onclick="tryItOut('PATCHapi-v1-customers');">Try it out ⚡
+                    id="btn-tryout-PATCHapi-v1-customers--customer-"
+                    onclick="tryItOut('PATCHapi-v1-customers--customer-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-customers"
-                    onclick="cancelTryOut('PATCHapi-v1-customers');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PATCHapi-v1-customers--customer-"
+                    onclick="cancelTryOut('PATCHapi-v1-customers--customer-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-customers" hidden>Send Request 💥
+                    id="btn-executetryout-PATCHapi-v1-customers--customer-" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
-            <b><code>api/v1/customers</code></b>
+            <b><code>api/v1/customers/{customer}</code></b>
         </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>customer</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="customer"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="first_name"
-               data-endpoint="PATCHapi-v1-customers"
+               data-endpoint="PATCHapi-v1-customers--customer-"
                value="John"
                data-component="body" hidden>
     <br>
@@ -614,7 +625,7 @@ fetch(url, {
             <b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="last_name"
-               data-endpoint="PATCHapi-v1-customers"
+               data-endpoint="PATCHapi-v1-customers--customer-"
                value="Doe"
                data-component="body" hidden>
     <br>
@@ -624,8 +635,8 @@ fetch(url, {
             <b><code>telephone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="telephone"
-               data-endpoint="PATCHapi-v1-customers"
-               value="blanditiis"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="rerum"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -634,7 +645,7 @@ fetch(url, {
             <b><code>add_street</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="add_street"
-               data-endpoint="PATCHapi-v1-customers"
+               data-endpoint="PATCHapi-v1-customers--customer-"
                value="48 Ogunaike street, Ikoyi, Lagos State."
                data-component="body" hidden>
     <br>
@@ -785,7 +796,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"rerum\"
+    \"order_type\": \"sed\"
 }"
 </code></pre></div>
 
@@ -801,7 +812,7 @@ const headers = {
 };
 
 let body = {
-    "order_type": "rerum"
+    "order_type": "sed"
 };
 
 fetch(url, {
@@ -867,7 +878,7 @@ fetch(url, {
                 <input type="text"
                name="order_type"
                data-endpoint="PATCHapi-v1-submit-request"
-               value="rerum"
+               value="sed"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
@@ -1000,7 +1011,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"sed\",
+    \"phone_number\": \"similique\",
     \"regenerate\": false
 }"
 </code></pre></div>
@@ -1017,7 +1028,7 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "sed",
+    "phone_number": "similique",
     "regenerate": false
 };
 
@@ -1076,7 +1087,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="sed"
+               value="similique"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

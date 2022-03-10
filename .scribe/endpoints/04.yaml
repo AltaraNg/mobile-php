@@ -22,7 +22,7 @@ endpoints:
         name: phone_number
         description: 'The customer phone number.'
         required: true
-        example: sed
+        example: similique
         type: string
         custom: []
       regenerate:

@@ -26,11 +26,11 @@
                                     @csrf
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                            aria-describedby="emailHelp" placeholder="Enter email" name="email" value="ibeanuhillary@gmail.com">
+                                            aria-describedby="emailHelp" placeholder="Enter email" name="email" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password" name="password" value="password">
+                                            id="exampleInputPassword" placeholder="Password" name="password" value="">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">

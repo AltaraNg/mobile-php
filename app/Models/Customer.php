@@ -25,9 +25,4 @@ class Customer extends Authenticatable
     {
         return $this->hasOne(Verification::class);
     }
-
-    public function myNotifications()
-    {
-        return $this->morphMany(DatabaseNotification::class, 'notifiable')->orderBy('created_at', 'desc');
-    }
 }

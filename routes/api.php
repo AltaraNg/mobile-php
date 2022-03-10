@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerNotificationController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
@@ -34,6 +35,8 @@ Route::prefix('v1')->group(function () {
         Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customer.update');
         Route::get('/customers/{customer}/orders', [CustomerOrderController::class, 'show'])->name('customer.order.show');
         Route::patch('/submit/request', [CustomerOrderController::class, 'submitRequest'])->name('customer.order.request');
+        Route::get('/customers/{customer}/notifications', [CustomerNotificationController::class, 'show'])->name('customers.notifications.show');
+      
     });
     Route::prefix('otp')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');

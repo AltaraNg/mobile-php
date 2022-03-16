@@ -2,10 +2,7 @@
 
 
 use App\Http\Controllers\Admin\AuthenticationController;
-use App\Http\Controllers\Admin\BroadcastController;
 use App\Http\Controllers\Admin\DashboardController;
-use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +28,4 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/dashboard/send', [DashboardController::class, 'sendMessage'])->name('send-message');
     Route::get('/dashboard/resend/{broadcast}', [DashboardController::class, 'resendMessage'])->name('resend-message');
     Route::get('/logout',  [AuthenticationController::class, 'logout'])->name('web-logout');
-    Route::resource('broadcasts', BroadcastController::class);
 });

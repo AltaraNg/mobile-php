@@ -22,25 +22,9 @@
     </div>
     <li class="nav-item active">
         <a class="nav-link" href="{{route('send-message')}}">
-            <i class="fas fa-calendar"></i>
-            <span>Send Message</span></a>
+            <i class="fas fa-folder"></i>
+            <span>Message</span></a>
     </li>
-    {{-- <li class="nav-item active">
-        <a class="nav-link" href="{{ route('courses.index') }}">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Courses</span></a>
-    </li>
-    
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('students.index') }}">
-            <i class="fas fa-users"></i>
-            <span>Students</span></a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('lecturers.index') }}">
-            <i class="fas fa-user-tie"></i>
-            <span>Lecturers</span></a>
-    </li> --}}
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

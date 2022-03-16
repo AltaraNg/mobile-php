@@ -43,7 +43,7 @@ endpoints:
         name: telephone
         description: 'The customer phone number.'
         required: true
-        example: rerum
+        example: sapiente
         type: string
         custom: []
       add_street:

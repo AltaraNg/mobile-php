@@ -70,6 +70,16 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="notifications">
+                    <a href="#notifications">Notifications</a>
+                </li>
+                                    <ul id="tocify-subheader-notifications" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="notifications-GETapi-v1-customers--customer_id--notifications">
+                        <a href="#notifications-GETapi-v1-customers--customer_id--notifications">All Notifications</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentication">
                     <a href="#authentication">Authentication</a>
                 </li>
@@ -85,7 +95,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-3" class="tocify-header">
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="customer">
                     <a href="#customer">Customer</a>
                 </li>
@@ -95,7 +105,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-5" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="customer-order">
                     <a href="#customer-order">Customer Order</a>
                 </li>
@@ -108,7 +118,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-5" class="tocify-header">
+                    <ul id="tocify-header-6" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="endpoints">
                     <a href="#endpoints">Endpoints</a>
                 </li>
@@ -118,7 +128,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-6" class="tocify-header">
+                    <ul id="tocify-header-7" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="otp">
                     <a href="#otp">Otp</a>
                 </li>
@@ -138,7 +148,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 9 2022</li>
+        <li>Last updated: March 10 2022</li>
     </ul>
 </div>
 
@@ -157,6 +167,122 @@ You can switch the language used with the tabs at the top right (or from the nav
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
+
+        <h1 id="notifications">Notifications</h1>
+
+    <p>Api Endpoints for Customer Notifications</p>
+
+            <h2 id="notifications-GETapi-v1-customers--customer_id--notifications">All Notifications</h2>
+
+<p>
+</p>
+
+<p>This endpoint is used for getting all customer notifications.</p>
+
+<span id="example-requests-GETapi-v1-customers--customer_id--notifications">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/customers/12/notifications" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/customers/12/notifications"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-customers--customer_id--notifications">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: ://localhost:
+access-control-allow-credentials: true
+access-control-allow-methods: POST, GET, OPTIONS, PUT, DELETE, PATCH
+access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorization
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;data&quot;: [],
+    &quot;message&quot;: &quot;Unauthenticated.&quot;,
+    &quot;code&quot;: 10
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-customers--customer_id--notifications" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-customers--customer_id--notifications"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-customers--customer_id--notifications"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-customers--customer_id--notifications" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-customers--customer_id--notifications"></code></pre>
+</span>
+<form id="form-GETapi-v1-customers--customer_id--notifications" data-method="GET"
+      data-path="api/v1/customers/{customer_id}/notifications"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-customers--customer_id--notifications', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-customers--customer_id--notifications"
+                    onclick="tryItOut('GETapi-v1-customers--customer_id--notifications');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-customers--customer_id--notifications"
+                    onclick="cancelTryOut('GETapi-v1-customers--customer_id--notifications');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-customers--customer_id--notifications" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/customers/{customer_id}/notifications</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>customer_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="customer_id"
+               data-endpoint="GETapi-v1-customers--customer_id--notifications"
+               value="12"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the customer.</p>
+            </p>
+                    </form>
 
         <h1 id="authentication">Authentication</h1>
 
@@ -179,9 +305,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"qui\",
-    \"otp\": \"et\",
-    \"device_name\": \"aspernatur\"
+    \"phone_number\": \"praesentium\",
+    \"otp\": \"ut\",
+    \"device_name\": \"facere\"
 }"
 </code></pre></div>
 
@@ -197,9 +323,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "qui",
-    "otp": "et",
-    "device_name": "aspernatur"
+    "phone_number": "praesentium",
+    "otp": "ut",
+    "device_name": "facere"
 };
 
 fetch(url, {
@@ -257,7 +383,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="qui"
+               value="praesentium"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -267,7 +393,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="et"
+               value="ut"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -277,7 +403,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="aspernatur"
+               value="facere"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -527,7 +653,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --data "{
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
-    \"telephone\": \"rerum\",
+    \"telephone\": \"sapiente\",
     \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\"
 }"
 </code></pre></div>
@@ -546,7 +672,7 @@ const headers = {
 let body = {
     "first_name": "John",
     "last_name": "Doe",
-    "telephone": "rerum",
+    "telephone": "sapiente",
     "add_street": "48 Ogunaike street, Ikoyi, Lagos State."
 };
 
@@ -636,7 +762,7 @@ fetch(url, {
                 <input type="text"
                name="telephone"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="rerum"
+               value="sapiente"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -796,7 +922,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"sed\"
+    \"order_type\": \"iste\"
 }"
 </code></pre></div>
 
@@ -812,7 +938,7 @@ const headers = {
 };
 
 let body = {
-    "order_type": "sed"
+    "order_type": "iste"
 };
 
 fetch(url, {
@@ -878,7 +1004,7 @@ fetch(url, {
                 <input type="text"
                name="order_type"
                data-endpoint="PATCHapi-v1-submit-request"
-               value="sed"
+               value="iste"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
@@ -1011,8 +1137,8 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"similique\",
-    \"regenerate\": false
+    \"phone_number\": \"sunt\",
+    \"regenerate\": true
 }"
 </code></pre></div>
 
@@ -1028,8 +1154,8 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "similique",
-    "regenerate": false
+    "phone_number": "sunt",
+    "regenerate": true
 };
 
 fetch(url, {
@@ -1087,7 +1213,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="similique"
+               value="sunt"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

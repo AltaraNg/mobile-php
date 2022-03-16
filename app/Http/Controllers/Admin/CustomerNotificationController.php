@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -14,8 +16,8 @@ use Illuminate\Support\Facades\DB;
  */
 class CustomerNotificationController extends Controller
 {
-    
-     /**
+
+    /**
      * All Notifications
      *
      * This endpoint is used for getting all customer notifications.
@@ -25,7 +27,7 @@ class CustomerNotificationController extends Controller
      */
     public function show(Customer $customer)
     {
-        $notifications = DB::table('notifications')->where('notifiable_type', 'App\Customer')->where('notifiable_id', $customer->id)->latest()->paginate(15);
+        $notifications = DB::table('notifications')->where('notifiable_type', 'App\Customer')->where('type', 'App\Notifications\CustomerNotification')->where('notifiable_id', $customer->id)->latest()->paginate(15);
         return $this->sendSuccess(['notifications' => $notifications], 'User notifications retrieved');
     }
 }

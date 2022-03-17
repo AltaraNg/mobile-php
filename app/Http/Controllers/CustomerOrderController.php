@@ -8,7 +8,10 @@ use App\Models\Customer;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
 use App\Services\GoogleSheetService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @group Customer Order
@@ -21,12 +24,9 @@ use Illuminate\Support\Facades\Gate;
 class CustomerOrderController extends Controller
 {
     private $customerRepository;
-    private $googleSheetService;
-
-    public function __construct(CustomerRepository $customerRepository, GoogleSheetService $googleSheetService)
+    public function __construct(CustomerRepository $customerRepository)
     {
         $this->customerRepository = $customerRepository;
-        $this->googleSheetService = $googleSheetService;
     }
 
     /**
@@ -50,19 +50,24 @@ class CustomerOrderController extends Controller
      */
     public function submitRequest(StoreOrderRequest $request)
     {
-        $customer = auth()->user();   
+        $customer = auth()->user();
         $input = [
-            'customer_id' => $customer->id,
-            'name' => $customer->first_name . ' ' . $customer->last_name,
-            'phone_number' => $customer->telephone,
-            'order_type' => $request->order_type,
-            'request_date' => Carbon::now()->format('Y-m-d')
+            'Customer_Id' => $customer->id,
+            'Name' => $customer->first_name . ' ' . $customer->last_name,
+            'Phone_Number' => $customer->telephone,
+            'Order_Type' => $request->order_type,
+            'Request_Date' => Carbon::now()->format('Y-m-d')
         ];
         $data = [
             array_values($input)
         ];
-        $res =  $this->googleSheetService->appendSheet($data, env('GOOGLE_SHEET_ORDER_REQUEST_DOCUMENT_ID'));
-        if ($res->updates && $res->updates->updatedRows > 0) {
+        try {
+            $response = Http::post(env('GOOGLE_SHEET_URL'), $data);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            throw new Exception("An error occurred while processing your request, kindly visit any of our offices.", 500);
+        }
+        if ($response->status() == 200) {
             return $this->sendSuccess([], 'Order request has successfully been submitted');
         }
         return $this->sendError('Unable to submit order request, kindly contact admin', 500);

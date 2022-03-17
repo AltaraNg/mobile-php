@@ -65,7 +65,7 @@ class CustomerOrderController extends Controller
             $response = Http::post(env('GOOGLE_SHEET_URL'), $data);
         } catch (\Throwable $th) {
             Log::error($th);
-            throw new Exception("Unable to Process Request", 500);
+            throw new Exception("An error occurred while processing your request, kindly visit any of our offices.", 500);
         }
         if ($response->status() == 200) {
             return $this->sendSuccess([], 'Order request has successfully been submitted');

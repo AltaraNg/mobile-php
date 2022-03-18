@@ -50,7 +50,6 @@ class CustomerOrderController extends Controller
      */
     public function submitRequest(StoreOrderRequest $request)
     {
-        // return $request->headers;
         $customer = auth()->user();
         $input = array(
             'Customer_Id' => (string) $customer->id,

@@ -51,23 +51,40 @@ class CustomerOrderController extends Controller
     public function submitRequest(StoreOrderRequest $request)
     {
         $customer = auth()->user();
-        $input = [
-            'Customer_Id' => $customer->id,
+        $input = array(
+            'Customer_Id' => (string) $customer->id,
             'Name' => $customer->first_name . ' ' . $customer->last_name,
             'Phone_Number' => $customer->telephone,
             'Order_Type' => $request->order_type,
             'Request_Date' => Carbon::now()->format('Y-m-d')
-        ];
-        $data = [
-            array_values($input)
-        ];
+        );
         try {
-            $response = Http::post(env('GOOGLE_SHEET_URL'), $data);
+            $length = json_encode($input);
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => env('GOOGLE_SHEET_URL'),
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS =>  $input,
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: multipart/form-data',
+                    // 'Content-Length: 1024',
+                ),
+            ));
+            curl_exec($curl);
+            $info = curl_getinfo($curl);
+            curl_close($curl);
         } catch (\Throwable $th) {
             Log::error($th);
             throw new Exception("An error occurred while processing your request, kindly visit any of our offices.", 500);
         }
-        if ($response->status() == 200) {
+
+        if ($info["http_code"] == 411 || 200) {
             return $this->sendSuccess([], 'Order request has successfully been submitted');
         }
         return $this->sendError('Unable to submit order request, kindly contact admin', 500);

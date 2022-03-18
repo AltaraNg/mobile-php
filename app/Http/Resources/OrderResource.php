@@ -28,6 +28,12 @@ class OrderResource extends JsonResource
             'included' => [
                 'amortizations' => $this->amortizations,
                 'product' => $this->product,
+                'business_type' => $this->businessType,
+                'down_payment_rate' => $this->downPaymentRate,
+                'order_type' => $this->orderType,
+                'repayment_duration' => $this->repaymentDuration,
+                'sales_category' => $this->salesCategory,
+                'repayment_cycle' => $this->repaymentCycle
             ]
         ];
     }

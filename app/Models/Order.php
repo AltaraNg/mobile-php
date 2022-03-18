@@ -22,4 +22,32 @@ class Order extends Model
     {
         return $this->hasMany(Amortization::class, 'new_order_id');
     }
+    public function downPaymentRate()
+    {
+        return $this->belongsTo(DownPaymentRate::class, 'down_payment_rate_id');
+    }
+    public function orderType()
+    {
+        return $this->belongsTo(OrderType::class, 'order_type_id');
+    }
+    public function repaymentDuration()
+    {
+        return $this->belongsTo(RepaymentDuration::class);
+    }
+    public function businessType()
+    {
+        return $this->belongsTo(BusinessType::class);
+    }
+    public function paymentMethod()
+    {
+        return $this->hasOne(PaymentMethod::class);
+    }
+    public function salesCategory()
+    {
+        return $this->belongsTo(SalesCategory::class, 'sales_category_id');
+    }
+    public function repaymentCycle()
+    {
+        return $this->belongsTo(RepaymentCycle::class);
+    }
 }

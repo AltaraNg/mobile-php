@@ -46,4 +46,8 @@ class Order extends Model
     {
         return $this->belongsTo(SalesCategory::class, 'sales_category_id');
     }
+    public function repaymentCycle()
+    {
+        return $this->belongsTo(RepaymentCycle::class);
+    }
 }

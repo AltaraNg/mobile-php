@@ -33,6 +33,7 @@ class OrderResource extends JsonResource
                 'order_type' => $this->orderType,
                 'repayment_duration' => $this->repaymentDuration,
                 'sales_category' => $this->salesCategory,
+                'repayment_cycle' => $this->repaymentCycle
             ]
         ];
     }

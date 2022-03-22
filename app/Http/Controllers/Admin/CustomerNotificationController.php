@@ -18,7 +18,7 @@ class CustomerNotificationController extends Controller
 {
 
     /**
-     * All Notifications
+     * All Notifications For Customer
      *
      * This endpoint is used for getting all customer notifications.
      * 

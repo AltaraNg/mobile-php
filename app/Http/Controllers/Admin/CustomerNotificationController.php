@@ -18,7 +18,7 @@ class CustomerNotificationController extends Controller
 {
 
     /**
-     * All Notifications
+     * All Notifications For Customer
      *
      * This endpoint is used for getting all customer notifications.
      * 
@@ -27,7 +27,7 @@ class CustomerNotificationController extends Controller
      */
     public function show(Customer $customer)
     {
-        $notifications = DB::table('notifications')->where('notifiable_type', 'App\Customer')->where('type', 'App\Notifications\CustomerNotification')->where('notifiable_id', $customer->id)->latest()->paginate(15);
+        $notifications = DB::table('notifications')->where('notifiable_type', 'App\Customer')->where('type', 'App\Notifications\CustomerMobileMessageNotification')->where('notifiable_id', $customer->id)->latest()->paginate(15);
         return $this->sendSuccess(['notifications' => $notifications], 'User notifications retrieved');
     }
 }

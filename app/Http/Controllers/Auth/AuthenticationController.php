@@ -43,9 +43,6 @@ class AuthenticationController extends Controller
             ['telephone' => $request->phone_number],
             $this->setNotNullableFields()
         );
-        // if (!$customer) {
-        //     return $this->sendError('Supplied phone is invalid', HttpResponseCodes::ACTION_FAILED);
-        // }
         $otp = $this->otpService->validate($request->phone_number, $request->otp);
         if (!$otp->status) {
             return $this->sendError($otp->message, HttpResponseCodes::OTP_NOT_EXPIRED);
@@ -58,28 +55,6 @@ class AuthenticationController extends Controller
         return $this->sendSuccess($data, 'Logged in successfully');
     }
 
-
-    // public function signup(StoreCustomerRequest $request)
-    // {
-
-    //     $otp = $this->otpService->generate($request->telephone);
-    //     if (!$otp->status) {
-    //         return $this->sendError($otp->message, HttpResponseCodes::OTP_NOT_EXPIRED);
-    //     }
-    //     $message = $otp->otp . " is your Altara app login code and it expires in " . $otp->expires_in;
-    //     $response = $this->messageService->sendMessage($request->telephone, $message);
-    //     $messageStatus = $response->messages[0]->status;
-    //     if ($messageStatus->groupName != 'Success') {
-    //         return $this->sendError($messageStatus->description, HttpResponseCodes::ACTION_FAILED);
-    //     }
-    //     $data = $request->validated();
-    //     $data = array_merge(
-    //         $data,
-    //         $this->setNotNullableFields(),
-    //     );
-    //     $customer =  $this->customerRepository->create($data);
-    //     return $this->sendSuccess(['customer' => new CustomerResource($customer)], 'Profile created and token has been sent to supplied phone number');
-    // }
 
     /**
      * Logout

@@ -111,7 +111,6 @@ class AuthenticationController extends Controller
     }
     private function setNotNullableFields()
     {
-        //add uboarded column
         return [
             'first_name' => 'N/A',
             'last_name' => 'N/A',
@@ -123,10 +122,10 @@ class AuthenticationController extends Controller
             'add_nbstop' => 'N/A',
             'area_address' => 'N/A',
             'add_houseno' => 'N/A',
-            'city' => 'N/A', //required
-            'state' => 'N/A', //required
-            'gender' => 'N/A', //required
-            'date_of_birth' => 'N/A', //required
+            'city' => 'N/A', 
+            'state' => 'N/A', 
+            'gender' => 'N/A',
+            'date_of_birth' => 'N/A',
             'civil_status' => 'N/A',
             'type_of_home' => 'N/A',
             'no_of_rooms' => 'N/A',

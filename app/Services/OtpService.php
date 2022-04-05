@@ -44,6 +44,7 @@ class OtpService implements OtpInterface
                 'generated_at' => Carbon::now(),
             ]);
         } else {
+            // dd($otp);
             if (!$otp->isExpired() && !request()->regenerate) {
                 return (object)[
                     'status' => false,

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
+use Illuminate\Http\Request;
 
 /**
  * @group Customer
@@ -39,5 +40,10 @@ class CustomerController extends Controller
             return $this->sendError('Profile could not be updated, please try again later', HttpResponseCodes::ACTION_FAILED);
         }
         return $this->sendSuccess([new CustomerResource($customer->fresh()), 'Profile updated successfully']);
+    }
+
+    public function completeSignUp(Request $request)
+    {
+        
     }
 }

@@ -41,9 +41,4 @@ class CustomerController extends Controller
         }
         return $this->sendSuccess([new CustomerResource($customer->fresh()), 'Profile updated successfully']);
     }
-
-    public function completeSignUp(Request $request)
-    {
-        
-    }
 }

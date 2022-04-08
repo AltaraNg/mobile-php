@@ -20,10 +20,9 @@ class OtpController extends Controller
     private $messageService;
     private $otpService;
 
-    public function __construct(MessageService $messageService, OtpService $otpService)
+    public function __construct(OtpService $otpService)
     {
         $this->otpService = $otpService;
-        $this->messageService = $messageService;
     }
 
     /**
@@ -32,15 +31,16 @@ class OtpController extends Controller
      * Send otp to the provided email address.
      *
      */
-    public function sendOtp(SendOtpRequest $request)
+    public function sendOtp(SendOtpRequest $request, MessageService $messageService)
     {
         $otp = $this->otpService->generate($request->phone_number);
+        // dd($otp);
        
         // if (!$otp->status) {
         //     return $this->sendError($otp->message, HttpResponseCodes::REQUEST_NOT_PERMITTED);
         // }
-        // $message = $otp->otp . " is your Altara app login code and it expires in " . $otp->expires_in;
-        $response = $this->messageService->sendMessage($request->phone_number, $message);
+        $message = $otp->otp . " is your Altara app login code";
+        $response = $messageService->sendMessage($request->phone_number, $message);
         $messageStatus = $response->messages[0]->status;
         if ($messageStatus->groupName != 'Success') {
             return $this->sendError($messageStatus->description, HttpResponseCodes::ACTION_FAILED);

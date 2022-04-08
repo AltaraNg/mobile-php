@@ -21,6 +21,7 @@ class HttpResponseCodes extends  BaseEnum
     const ROUTE_NOT_FOUND = 12;
     const UNABLE_TO_PROCESS = 13;
     const TEST_MODE_ONLY = 14;
+    const OTP_NOT_EXPIRED = 15;
 
     // Other Errors
     const LOGIN_FAIL = 101;
@@ -45,4 +46,6 @@ class HttpResponseCodes extends  BaseEnum
     const NOT_FOUND = 404;
     const METHOD_NOT_ALLOWED = 405;
     const UNPROCESSABLE_ENTITY = 422;
+
+   
 }

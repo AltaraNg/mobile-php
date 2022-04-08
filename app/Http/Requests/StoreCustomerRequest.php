@@ -4,11 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @bodyParam phone_number string required The customer phone number.
- * @bodyParam regenerate boolean  Pass this to regenerate otp code for users if previous one has expired 
- */
-class SendOtpRequest extends FormRequest
+class StoreCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +24,10 @@ class SendOtpRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone_number' => ['required', 'string'],
-            'regenerate' => ['nullable', 'bool']
+            'first_name' => ['required', 'string', 'max:255', 'min:3'],
+            'last_name' => ['required', 'string', 'max:255', 'min:3'],
+            'telephone' => ['required', 'string', 'unique:customers,telephone'],
+            'add_street' => ['required', 'string', 'max:255'],
         ];
     }
 }

@@ -44,12 +44,12 @@ class OtpService implements OtpInterface
                 'generated_at' => Carbon::now(),
             ]);
         } else {
-            if (!$otp->isExpired() && !request()->regenerate) {
-                return (object)[
-                    'status' => false,
-                    'message' => 'Please check your message, you have an otp that expires in: ' . $otp->expiresIn(),
-                ];
-            }
+            // if (!$otp->isExpired() && !request('regenerate')) {
+            //     return (object)[
+            //         'status' => false,
+            //         'message' => 'Please check your message, you have an otp that expires in: ' . $otp->expiresIn(),
+            //     ];
+            // }
             $otp->update([
                 'identifier' => $identifier,
                 'token' => $this->createPin(),

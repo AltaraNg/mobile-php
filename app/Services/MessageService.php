@@ -23,14 +23,14 @@ class MessageService
             }
             return json_decode(json_encode($this->error($receiver)));
         }
-        $data = Http::get(env('SMS_URL'), [
-            'user' => env('SMS_USERNAME'),
-            'password' => env('SMS_PASSWORD'),
-            'sender' => env('SENDER'),
-            'SMSText' => $message,
-            'GSM' => $receiver,
-            'type' => 'longSMS',
-        ])->body();
+        $ch = curl_init();
+        $receiver = urlencode($receiver);
+        $message = urlencode($message);
+        curl_setopt($ch, CURLOPT_URL, env('SMS_URL') . '?user=' . env('SMS_USERNAME') . '&password=' . env('SMS_PASSWORD') . '&sender=' . env('SENDER') . '&SMSText=' . $message . '&GSM=' . $receiver . '&type=longSMS');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $data = curl_exec($ch);
+        curl_close($ch);
         $response = (int)preg_replace('/[^0-9]/', '', $data);
         $res_message = '';
         switch ($data) {

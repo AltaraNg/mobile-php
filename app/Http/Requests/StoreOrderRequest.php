@@ -17,7 +17,8 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize()
     {
-      return Gate::authorize('verified', auth()->user());
+        return true;
+    //   return Gate::authorize('verified', auth()->user());
     }
 
     /**

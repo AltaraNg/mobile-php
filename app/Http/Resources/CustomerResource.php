@@ -30,10 +30,12 @@ class CustomerResource extends JsonResource
                 'reg_id' => $this->reg_id,
                 'date_of_registration' => $this->date_of_registration,
                 'civil_status' => $this->civil_status,
+                'add_street' => $this->add_street,
                 'city' => $this->city,
                 'state' => $this->state, 
                 'gender' => $this->gender, 
                 'date_of_birth' => $this->date_of_birth, 
+                
             ],
             'relationships' => [],
             'included' => [

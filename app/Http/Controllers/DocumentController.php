@@ -15,7 +15,7 @@ use Illuminate\Validation\Rule;
  * 
  * @authenticated
  *
- * Api Endpoints for Customer order
+ * Api Endpoints for Customer document upload
  * 
  */
 class DocumentController extends Controller
@@ -45,10 +45,6 @@ class DocumentController extends Controller
             }
         }
         return $this->sendSuccess([], str_replace("_", ' ', ucfirst($request->type)) . ' uploaded successfully');
-    }
-
-    public function uploadId()
-    {
     }
 
 

@@ -20,13 +20,16 @@ use Illuminate\Validation\Rule;
  */
 class DocumentController extends Controller
 {
+    /**
+     * @bodyParam document file required The id of the user. No-example
+     * @bodyParam type string The type of document been uploaded. Example: passport
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
             'document' => ['required', 'max:512', 'dimensions:max_width=1200,max_height=1200', 'mimes:jpeg,jpg,png,svg'],
-            'type' => ['required', 'string', Rule::in([
-                'passport', 'id_card', 'guarantor_id', 'proof_of_income'
-            ])]
+            'type' => ['required', 'string', 'in:passport,id_card,guarantor_id,proof_of_income']
+        
         ]);
         $document_column = $this->generateColumn($request->type);
         $customer = auth()->user();

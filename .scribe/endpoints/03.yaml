@@ -1,31 +1,34 @@
-name: Endpoints
+name: 'Document upload'
 description: ''
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/user
+      - POST
+    uri: api/v1/document/upload
     metadata:
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"status":"error","data":[],"message":"Unauthenticated.","code":10}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '://localhost:'
-          access-control-allow-credentials: 'true'
-          access-control-allow-methods: 'POST, GET, OPTIONS, PUT, DELETE, PATCH'
-          access-control-allow-headers: 'X-Requested-With, Content-Type, Origin, Authorization'
-        description: null
+    bodyParameters:
+      document:
+        name: document
+        description: 'The id of the user.'
+        required: true
+        example: null
+        type: file
+        custom: []
+      type:
+        name: type
+        description: 'The type of document been uploaded.'
+        required: false
+        example: passport
+        type: string
+        custom: []
+    responses: []
     responseFields: []

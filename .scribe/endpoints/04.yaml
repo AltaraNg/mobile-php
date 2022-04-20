@@ -1,28 +1,19 @@
-name: Notifications
-description: |-
-
-  Api Endpoints for Customer Notifications
+name: Endpoints
+description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/customers/{customer_id}/notifications'
+    uri: api/user
     metadata:
-      title: 'All Notifications'
-      description: 'This endpoint is used for getting all customer notifications.'
+      title: ''
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      customer_id:
-        name: customer_id
-        description: 'The ID of the customer.'
-        required: true
-        example: 12
-        type: integer
-        custom: []
+    urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:

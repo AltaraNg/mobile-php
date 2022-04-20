@@ -30,9 +30,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="{{ asset("vendor/scribe/js/tryitout-3.23.0.js") }}"></script>
+    <script src="{{ asset("vendor/scribe/js/tryitout-3.24.0.js") }}"></script>
 
-    <script src="{{ asset("vendor/scribe/js/theme-default-3.23.0.js") }}"></script>
+    <script src="{{ asset("vendor/scribe/js/theme-default-3.24.0.js") }}"></script>
 
 </head>
 
@@ -70,12 +70,12 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="notifications">
-                    <a href="#notifications">Notifications</a>
+                <li class="tocify-item level-1" data-unique="document-upload">
+                    <a href="#document-upload">Document upload</a>
                 </li>
-                                    <ul id="tocify-subheader-notifications" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="notifications-GETapi-v1-customers--customer_id--notifications">
-                        <a href="#notifications-GETapi-v1-customers--customer_id--notifications">All Notifications</a>
+                                    <ul id="tocify-subheader-document-upload" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="document-upload-POSTapi-v1-document-upload">
+                        <a href="#document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -113,8 +113,8 @@
                                                     <li class="tocify-item level-2" data-unique="customer-order-GETapi-v1-customers--customer--orders">
                         <a href="#customer-order-GETapi-v1-customers--customer--orders">All Customer Orders</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="customer-order-PATCHapi-v1-submit-request">
-                        <a href="#customer-order-PATCHapi-v1-submit-request">Apply for Orders</a>
+                                    <li class="tocify-item level-2" data-unique="customer-order-POSTapi-v1-submit-request">
+                        <a href="#customer-order-POSTapi-v1-submit-request">Apply for Orders</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -129,6 +129,16 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-7" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="notifications">
+                    <a href="#notifications">Notifications</a>
+                </li>
+                                    <ul id="tocify-subheader-notifications" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="notifications-GETapi-v1-customers--customer_id--notifications">
+                        <a href="#notifications-GETapi-v1-customers--customer_id--notifications">All Notifications For Customer</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-8" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="otp">
                     <a href="#otp">Otp</a>
                 </li>
@@ -148,7 +158,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 10 2022</li>
+        <li>Last updated: April 20 2022</li>
     </ul>
 </div>
 
@@ -168,121 +178,124 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="notifications">Notifications</h1>
+        <h1 id="document-upload">Document upload</h1>
 
-    <p>Api Endpoints for Customer Notifications</p>
+    
 
-            <h2 id="notifications-GETapi-v1-customers--customer_id--notifications">All Notifications</h2>
+            <h2 id="document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>This endpoint is used for getting all customer notifications.</p>
 
-<span id="example-requests-GETapi-v1-customers--customer_id--notifications">
+
+<span id="example-requests-POSTapi-v1-document-upload">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/customers/12/notifications" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/document/upload" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "type=passport" \
+    --form "document=@/tmp/phpoUZX1R" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/customers/12/notifications"
+    "http://localhost/api/v1/document/upload"
 );
 
 const headers = {
-    "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
 
+const body = new FormData();
+body.append('type', 'passport');
+body.append('document', document.querySelector('input[name="document"]').files[0]);
+
 fetch(url, {
-    method: "GET",
+    method: "POST",
     headers,
+    body,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-v1-customers--customer_id--notifications">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: ://localhost:
-access-control-allow-credentials: true
-access-control-allow-methods: POST, GET, OPTIONS, PUT, DELETE, PATCH
-access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorization
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;status&quot;: &quot;error&quot;,
-    &quot;data&quot;: [],
-    &quot;message&quot;: &quot;Unauthenticated.&quot;,
-    &quot;code&quot;: 10
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-customers--customer_id--notifications" hidden>
+<span id="example-responses-POSTapi-v1-document-upload">
+</span>
+<span id="execution-results-POSTapi-v1-document-upload" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-customers--customer_id--notifications"></span>:
+                id="execution-response-status-POSTapi-v1-document-upload"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-customers--customer_id--notifications"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-document-upload"></code></pre>
 </span>
-<span id="execution-error-GETapi-v1-customers--customer_id--notifications" hidden>
+<span id="execution-error-POSTapi-v1-document-upload" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-customers--customer_id--notifications"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-v1-document-upload"></code></pre>
 </span>
-<form id="form-GETapi-v1-customers--customer_id--notifications" data-method="GET"
-      data-path="api/v1/customers/{customer_id}/notifications"
-      data-authed="0"
-      data-hasfiles="0"
+<form id="form-POSTapi-v1-document-upload" data-method="POST"
+      data-path="api/v1/document/upload"
+      data-authed="1"
+      data-hasfiles="1"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-customers--customer_id--notifications', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-document-upload', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-customers--customer_id--notifications"
-                    onclick="tryItOut('GETapi-v1-customers--customer_id--notifications');">Try it out ⚡
+                    id="btn-tryout-POSTapi-v1-document-upload"
+                    onclick="tryItOut('POSTapi-v1-document-upload');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-customers--customer_id--notifications"
-                    onclick="cancelTryOut('GETapi-v1-customers--customer_id--notifications');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-v1-document-upload"
+                    onclick="cancelTryOut('POSTapi-v1-document-upload');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-customers--customer_id--notifications" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-v1-document-upload" hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/customers/{customer_id}/notifications</code></b>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/document/upload</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>customer_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="customer_id"
-               data-endpoint="GETapi-v1-customers--customer_id--notifications"
-               value="12"
-               data-component="url" hidden>
+                <p>
+            <label id="auth-POSTapi-v1-document-upload" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-document-upload"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>document</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="document"
+               data-endpoint="POSTapi-v1-document-upload"
+               value=""
+               data-component="body" hidden>
     <br>
-<p>The ID of the customer.</p>
-            </p>
-                    </form>
+<p>The id of the user.</p>
+        </p>
+                <p>
+            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="type"
+               data-endpoint="POSTapi-v1-document-upload"
+               value="passport"
+               data-component="body" hidden>
+    <br>
+<p>The type of document been uploaded.</p>
+        </p>
+        </form>
 
         <h1 id="authentication">Authentication</h1>
 
@@ -305,9 +318,9 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"praesentium\",
-    \"otp\": \"ut\",
-    \"device_name\": \"facere\"
+    \"phone_number\": \"delectus\",
+    \"otp\": \"porro\",
+    \"device_name\": \"qui\"
 }"
 </code></pre></div>
 
@@ -323,9 +336,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "praesentium",
-    "otp": "ut",
-    "device_name": "facere"
+    "phone_number": "delectus",
+    "otp": "porro",
+    "device_name": "qui"
 };
 
 fetch(url, {
@@ -383,7 +396,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="praesentium"
+               value="delectus"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -393,7 +406,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="ut"
+               value="porro"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -403,7 +416,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="facere"
+               value="qui"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -653,8 +666,14 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --data "{
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
-    \"telephone\": \"sapiente\",
-    \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\"
+    \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\",
+    \"city\": \"est\",
+    \"state\": \"sint\",
+    \"gender\": \"male\",
+    \"date_of_birth\": \"laudantium\",
+    \"employment_status\": \"consequatur\",
+    \"civil_status\": \"accusantium\",
+    \"telephone\": \"rerum\"
 }"
 </code></pre></div>
 
@@ -672,8 +691,14 @@ const headers = {
 let body = {
     "first_name": "John",
     "last_name": "Doe",
-    "telephone": "sapiente",
-    "add_street": "48 Ogunaike street, Ikoyi, Lagos State."
+    "add_street": "48 Ogunaike street, Ikoyi, Lagos State.",
+    "city": "est",
+    "state": "sint",
+    "gender": "male",
+    "date_of_birth": "laudantium",
+    "employment_status": "consequatur",
+    "civil_status": "accusantium",
+    "telephone": "rerum"
 };
 
 fetch(url, {
@@ -758,16 +783,6 @@ fetch(url, {
 <p>The customer last name.</p>
         </p>
                 <p>
-            <b><code>telephone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="telephone"
-               data-endpoint="PATCHapi-v1-customers--customer-"
-               value="sapiente"
-               data-component="body" hidden>
-    <br>
-<p>The customer phone number.</p>
-        </p>
-                <p>
             <b><code>add_street</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="add_street"
@@ -776,6 +791,76 @@ fetch(url, {
                data-component="body" hidden>
     <br>
 <p>The customer Address.</p>
+        </p>
+                <p>
+            <b><code>city</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="city"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="est"
+               data-component="body" hidden>
+    <br>
+<p>The customer city.</p>
+        </p>
+                <p>
+            <b><code>state</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="state"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="sint"
+               data-component="body" hidden>
+    <br>
+<p>The customer state.</p>
+        </p>
+                <p>
+            <b><code>gender</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="gender"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="male"
+               data-component="body" hidden>
+    <br>
+<p>The customer gender</p>
+        </p>
+                <p>
+            <b><code>date_of_birth</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="date_of_birth"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="laudantium"
+               data-component="body" hidden>
+    <br>
+<p>The customer date of birth. Example</p>
+        </p>
+                <p>
+            <b><code>employment_status</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="employment_status"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>civil_status</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="civil_status"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="accusantium"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>telephone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="telephone"
+               data-endpoint="PATCHapi-v1-customers--customer-"
+               value="rerum"
+               data-component="body" hidden>
+    <br>
+<p>The customer phone number.</p>
         </p>
         </form>
 
@@ -904,7 +989,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
             </p>
                     </form>
 
-            <h2 id="customer-order-PATCHapi-v1-submit-request">Apply for Orders</h2>
+            <h2 id="customer-order-POSTapi-v1-submit-request">Apply for Orders</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -912,17 +997,17 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <p>This endpoint is used for applying for orders by customers</p>
 
-<span id="example-requests-PATCHapi-v1-submit-request">
+<span id="example-requests-POSTapi-v1-submit-request">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request PATCH \
+    <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/v1/submit/request" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"iste\"
+    \"order_type\": \"fugiat\"
 }"
 </code></pre></div>
 
@@ -938,64 +1023,64 @@ const headers = {
 };
 
 let body = {
-    "order_type": "iste"
+    "order_type": "fugiat"
 };
 
 fetch(url, {
-    method: "PATCH",
+    method: "POST",
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-PATCHapi-v1-submit-request">
+<span id="example-responses-POSTapi-v1-submit-request">
 </span>
-<span id="execution-results-PATCHapi-v1-submit-request" hidden>
+<span id="execution-results-POSTapi-v1-submit-request" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-v1-submit-request"></span>:
+                id="execution-response-status-POSTapi-v1-submit-request"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-v1-submit-request"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-submit-request"></code></pre>
 </span>
-<span id="execution-error-PATCHapi-v1-submit-request" hidden>
+<span id="execution-error-POSTapi-v1-submit-request" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-v1-submit-request"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-v1-submit-request"></code></pre>
 </span>
-<form id="form-PATCHapi-v1-submit-request" data-method="PATCH"
+<form id="form-POSTapi-v1-submit-request" data-method="POST"
       data-path="api/v1/submit/request"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-submit-request', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-submit-request', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-submit-request"
-                    onclick="tryItOut('PATCHapi-v1-submit-request');">Try it out ⚡
+                    id="btn-tryout-POSTapi-v1-submit-request"
+                    onclick="tryItOut('POSTapi-v1-submit-request');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-submit-request"
-                    onclick="cancelTryOut('PATCHapi-v1-submit-request');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-v1-submit-request"
+                    onclick="cancelTryOut('POSTapi-v1-submit-request');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-submit-request" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-v1-submit-request" hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-purple">PATCH</small>
+            <small class="badge badge-black">POST</small>
             <b><code>api/v1/submit/request</code></b>
         </p>
                 <p>
-            <label id="auth-PATCHapi-v1-submit-request" hidden>Authorization header:
+            <label id="auth-POSTapi-v1-submit-request" hidden>Authorization header:
                 <b><code>Bearer </code></b><input type="text"
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
-                                                                data-endpoint="PATCHapi-v1-submit-request"
+                                                                data-endpoint="POSTapi-v1-submit-request"
                                                                 data-component="header"></label>
         </p>
                         <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
@@ -1003,8 +1088,8 @@ fetch(url, {
             <b><code>order_type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="order_type"
-               data-endpoint="PATCHapi-v1-submit-request"
-               value="iste"
+               data-endpoint="POSTapi-v1-submit-request"
+               value="fugiat"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
@@ -1116,6 +1201,122 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
         </p>
                     </form>
 
+        <h1 id="notifications">Notifications</h1>
+
+    <p>Api Endpoints for Customer Notifications</p>
+
+            <h2 id="notifications-GETapi-v1-customers--customer_id--notifications">All Notifications For Customer</h2>
+
+<p>
+</p>
+
+<p>This endpoint is used for getting all customer notifications.</p>
+
+<span id="example-requests-GETapi-v1-customers--customer_id--notifications">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/customers/13/notifications" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/customers/13/notifications"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-customers--customer_id--notifications">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: ://localhost:
+access-control-allow-credentials: true
+access-control-allow-methods: POST, GET, OPTIONS, PUT, DELETE, PATCH
+access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorization
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;data&quot;: [],
+    &quot;message&quot;: &quot;Unauthenticated.&quot;,
+    &quot;code&quot;: 10
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-customers--customer_id--notifications" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-customers--customer_id--notifications"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-customers--customer_id--notifications"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-customers--customer_id--notifications" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-customers--customer_id--notifications"></code></pre>
+</span>
+<form id="form-GETapi-v1-customers--customer_id--notifications" data-method="GET"
+      data-path="api/v1/customers/{customer_id}/notifications"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-customers--customer_id--notifications', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-customers--customer_id--notifications"
+                    onclick="tryItOut('GETapi-v1-customers--customer_id--notifications');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-customers--customer_id--notifications"
+                    onclick="cancelTryOut('GETapi-v1-customers--customer_id--notifications');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-customers--customer_id--notifications" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/customers/{customer_id}/notifications</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>customer_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="customer_id"
+               data-endpoint="GETapi-v1-customers--customer_id--notifications"
+               value="13"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the customer.</p>
+            </p>
+                    </form>
+
         <h1 id="otp">Otp</h1>
 
     <p>Api Endpoints for sending otp</p>
@@ -1137,7 +1338,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"sunt\",
+    \"phone_number\": \"ullam\",
     \"regenerate\": true
 }"
 </code></pre></div>
@@ -1154,7 +1355,7 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "sunt",
+    "phone_number": "ullam",
     "regenerate": true
 };
 
@@ -1213,7 +1414,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="sunt"
+               value="ullam"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

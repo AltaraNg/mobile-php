@@ -7,7 +7,7 @@ endpoints:
     uri: api/v1/document/upload
     metadata:
       title: Upload
-      description: 'This endpoint is used for document upload, available types are ''passport,id_card,guarantor_id,proof_of_income'''
+      description: 'This endpoint is used for document upload, available types are passport,id_card,guarantor_id,proof_of_income'
       authenticated: true
       custom: []
     headers:

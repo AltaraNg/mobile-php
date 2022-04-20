@@ -50,14 +50,14 @@ endpoints:
         name: city
         description: 'The customer city.'
         required: true
-        example: sapiente
+        example: voluptatem
         type: string
         custom: []
       state:
         name: state
         description: 'The customer state.'
         required: true
-        example: molestiae
+        example: aut
         type: string
         custom: []
       gender:
@@ -71,28 +71,28 @@ endpoints:
         name: date_of_birth
         description: 'The customer date of birth. Example'
         required: true
-        example: rerum
+        example: ullam
         type: string
         custom: []
       employment_status:
         name: employment_status
         description: ''
         required: true
-        example: qui
+        example: et
         type: string
         custom: []
       civil_status:
         name: civil_status
         description: ''
         required: true
-        example: cumque
+        example: modi
         type: string
         custom: []
       telephone:
         name: telephone
         description: 'The customer phone number.'
         required: true
-        example: officiis
+        example: cumque
         type: string
         custom: []
     responses: []

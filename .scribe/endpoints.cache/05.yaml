@@ -22,7 +22,7 @@ endpoints:
         name: customer_id
         description: 'The ID of the customer.'
         required: true
-        example: 11
+        example: 20
         type: integer
         custom: []
     queryParameters: []

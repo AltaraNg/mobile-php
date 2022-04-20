@@ -199,9 +199,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"enim\",
-    \"otp\": \"et\",
-    \"device_name\": \"eum\"
+    \"phone_number\": \"maiores\",
+    \"otp\": \"sint\",
+    \"device_name\": \"ipsam\"
 }"
 </code></pre></div>
 
@@ -217,9 +217,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "enim",
-    "otp": "et",
-    "device_name": "eum"
+    "phone_number": "maiores",
+    "otp": "sint",
+    "device_name": "ipsam"
 };
 
 fetch(url, {
@@ -277,7 +277,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="enim"
+               value="maiores"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -287,7 +287,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="et"
+               value="sint"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -297,7 +297,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="eum"
+               value="ipsam"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -548,13 +548,13 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
     \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\",
-    \"city\": \"sapiente\",
-    \"state\": \"molestiae\",
+    \"city\": \"voluptatem\",
+    \"state\": \"aut\",
     \"gender\": \"male\",
-    \"date_of_birth\": \"rerum\",
-    \"employment_status\": \"qui\",
-    \"civil_status\": \"cumque\",
-    \"telephone\": \"officiis\"
+    \"date_of_birth\": \"ullam\",
+    \"employment_status\": \"et\",
+    \"civil_status\": \"modi\",
+    \"telephone\": \"cumque\"
 }"
 </code></pre></div>
 
@@ -573,13 +573,13 @@ let body = {
     "first_name": "John",
     "last_name": "Doe",
     "add_street": "48 Ogunaike street, Ikoyi, Lagos State.",
-    "city": "sapiente",
-    "state": "molestiae",
+    "city": "voluptatem",
+    "state": "aut",
     "gender": "male",
-    "date_of_birth": "rerum",
-    "employment_status": "qui",
-    "civil_status": "cumque",
-    "telephone": "officiis"
+    "date_of_birth": "ullam",
+    "employment_status": "et",
+    "civil_status": "modi",
+    "telephone": "cumque"
 };
 
 fetch(url, {
@@ -678,7 +678,7 @@ fetch(url, {
                 <input type="text"
                name="city"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="sapiente"
+               value="voluptatem"
                data-component="body" hidden>
     <br>
 <p>The customer city.</p>
@@ -688,7 +688,7 @@ fetch(url, {
                 <input type="text"
                name="state"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="molestiae"
+               value="aut"
                data-component="body" hidden>
     <br>
 <p>The customer state.</p>
@@ -708,7 +708,7 @@ fetch(url, {
                 <input type="text"
                name="date_of_birth"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="rerum"
+               value="ullam"
                data-component="body" hidden>
     <br>
 <p>The customer date of birth. Example</p>
@@ -718,7 +718,7 @@ fetch(url, {
                 <input type="text"
                name="employment_status"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="qui"
+               value="et"
                data-component="body" hidden>
     <br>
 
@@ -728,7 +728,7 @@ fetch(url, {
                 <input type="text"
                name="civil_status"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="cumque"
+               value="modi"
                data-component="body" hidden>
     <br>
 
@@ -738,7 +738,7 @@ fetch(url, {
                 <input type="text"
                name="telephone"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="officiis"
+               value="cumque"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -888,7 +888,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"tenetur\"
+    \"order_type\": \"enim\"
 }"
 </code></pre></div>
 
@@ -904,7 +904,7 @@ const headers = {
 };
 
 let body = {
-    "order_type": "tenetur"
+    "order_type": "enim"
 };
 
 fetch(url, {
@@ -970,7 +970,7 @@ fetch(url, {
                 <input type="text"
                name="order_type"
                data-endpoint="POSTapi-v1-submit-request"
-               value="tenetur"
+               value="enim"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
@@ -987,7 +987,7 @@ fetch(url, {
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>This endpoint is used for document upload, available types are 'passport,id_card,guarantor_id,proof_of_income'</p>
+<p>This endpoint is used for document upload, available types are passport,id_card,guarantor_id,proof_of_income</p>
 
 <span id="example-requests-POSTapi-v1-document-upload">
 <blockquote>Example request:</blockquote>
@@ -999,7 +999,7 @@ fetch(url, {
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "type=passport" \
-    --form "document=@/tmp/php8vSl5P" </code></pre></div>
+    --form "document=@/tmp/phpdTX92a" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1218,14 +1218,14 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://altara-customer-play-api.herokuapp.com/api/v1/customers/11/notifications" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/v1/customers/20/notifications" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/11/notifications"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/20/notifications"
 );
 
 const headers = {
@@ -1310,7 +1310,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
                 <input type="number"
                name="customer_id"
                data-endpoint="GETapi-v1-customers--customer_id--notifications"
-               value="11"
+               value="20"
                data-component="url" hidden>
     <br>
 <p>The ID of the customer.</p>
@@ -1338,8 +1338,8 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"ea\",
-    \"regenerate\": false
+    \"phone_number\": \"quo\",
+    \"regenerate\": true
 }"
 </code></pre></div>
 
@@ -1355,8 +1355,8 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "ea",
-    "regenerate": false
+    "phone_number": "quo",
+    "regenerate": true
 };
 
 fetch(url, {
@@ -1414,7 +1414,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="ea"
+               value="quo"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

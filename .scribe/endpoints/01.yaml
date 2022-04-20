@@ -39,18 +39,60 @@ endpoints:
         example: Doe
         type: string
         custom: []
-      telephone:
-        name: telephone
-        description: 'The customer phone number.'
-        required: true
-        example: sapiente
-        type: string
-        custom: []
       add_street:
         name: add_street
         description: 'The customer Address.'
         required: true
         example: '48 Ogunaike street, Ikoyi, Lagos State.'
+        type: string
+        custom: []
+      city:
+        name: city
+        description: 'The customer city.'
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      state:
+        name: state
+        description: 'The customer state.'
+        required: true
+        example: aut
+        type: string
+        custom: []
+      gender:
+        name: gender
+        description: 'The customer gender'
+        required: true
+        example: male
+        type: string
+        custom: []
+      date_of_birth:
+        name: date_of_birth
+        description: 'The customer date of birth. Example'
+        required: true
+        example: ullam
+        type: string
+        custom: []
+      employment_status:
+        name: employment_status
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      civil_status:
+        name: civil_status
+        description: ''
+        required: true
+        example: modi
+        type: string
+        custom: []
+      telephone:
+        name: telephone
+        description: 'The customer phone number.'
+        required: true
+        example: cumque
         type: string
         custom: []
     responses: []

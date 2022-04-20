@@ -38,7 +38,7 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PATCH
+      - POST
     uri: api/v1/submit/request
     metadata:
       title: 'Apply for Orders'
@@ -55,7 +55,7 @@ endpoints:
         name: order_type
         description: 'The type of product customer is requesting. Example Product or Loan'
         required: true
-        example: iste
+        example: enim
         type: string
         custom: []
     responses: []

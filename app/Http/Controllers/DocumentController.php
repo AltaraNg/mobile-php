@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 /**
- * @group Document upload
+ * @group Document
  * 
  * @authenticated
  *
@@ -24,17 +24,16 @@ class DocumentController extends Controller
      * 
      * Upload
      * 
-     * This endpoint is used for document upload
+     * This endpoint is used for document upload, available types are passport,id_card,guarantor_id,proof_of_income
      * 
      * @bodyParam document file required The id of the user. No-example
-     * @bodyParam type string The type of document been uploaded. Example: passport
+     * @bodyParam type string required The type of document been uploaded. Example: passport
      */
     public function store(Request $request)
     {
         $this->validate($request, [
             'document' => ['required', 'max:512', 'dimensions:max_width=1200,max_height=1200', 'mimes:jpeg,jpg,png,svg'],
-            'type' => ['required', 'string', 'in:passport,id_card,guarantor_id,proof_of_income']
-        
+            'type' => ['in:passport,id_card,guarantor_id,proof_of_income', 'string']
         ]);
         $document_column = $this->generateColumn($request->type);
         $customer = auth()->user();

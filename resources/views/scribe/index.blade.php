@@ -109,12 +109,12 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-5" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="document-upload">
-                    <a href="#document-upload">Document upload</a>
+                <li class="tocify-item level-1" data-unique="document">
+                    <a href="#document">Document</a>
                 </li>
-                                    <ul id="tocify-subheader-document-upload" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="document-upload-POSTapi-v1-document-upload">
-                        <a href="#document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</a>
+                                    <ul id="tocify-subheader-document" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="document-POSTapi-v1-document-upload">
+                        <a href="#document-POSTapi-v1-document-upload">Upload</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -199,9 +199,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"tempore\",
-    \"otp\": \"voluptates\",
-    \"device_name\": \"quia\"
+    \"phone_number\": \"enim\",
+    \"otp\": \"et\",
+    \"device_name\": \"eum\"
 }"
 </code></pre></div>
 
@@ -217,9 +217,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "tempore",
-    "otp": "voluptates",
-    "device_name": "quia"
+    "phone_number": "enim",
+    "otp": "et",
+    "device_name": "eum"
 };
 
 fetch(url, {
@@ -277,7 +277,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="tempore"
+               value="enim"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -287,7 +287,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="voluptates"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -297,7 +297,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="quia"
+               value="eum"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -548,13 +548,13 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
     \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\",
-    \"city\": \"temporibus\",
-    \"state\": \"amet\",
+    \"city\": \"sapiente\",
+    \"state\": \"molestiae\",
     \"gender\": \"male\",
-    \"date_of_birth\": \"quaerat\",
-    \"employment_status\": \"dignissimos\",
-    \"civil_status\": \"vel\",
-    \"telephone\": \"aut\"
+    \"date_of_birth\": \"rerum\",
+    \"employment_status\": \"qui\",
+    \"civil_status\": \"cumque\",
+    \"telephone\": \"officiis\"
 }"
 </code></pre></div>
 
@@ -573,13 +573,13 @@ let body = {
     "first_name": "John",
     "last_name": "Doe",
     "add_street": "48 Ogunaike street, Ikoyi, Lagos State.",
-    "city": "temporibus",
-    "state": "amet",
+    "city": "sapiente",
+    "state": "molestiae",
     "gender": "male",
-    "date_of_birth": "quaerat",
-    "employment_status": "dignissimos",
-    "civil_status": "vel",
-    "telephone": "aut"
+    "date_of_birth": "rerum",
+    "employment_status": "qui",
+    "civil_status": "cumque",
+    "telephone": "officiis"
 };
 
 fetch(url, {
@@ -678,7 +678,7 @@ fetch(url, {
                 <input type="text"
                name="city"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="temporibus"
+               value="sapiente"
                data-component="body" hidden>
     <br>
 <p>The customer city.</p>
@@ -688,7 +688,7 @@ fetch(url, {
                 <input type="text"
                name="state"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="amet"
+               value="molestiae"
                data-component="body" hidden>
     <br>
 <p>The customer state.</p>
@@ -708,7 +708,7 @@ fetch(url, {
                 <input type="text"
                name="date_of_birth"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="quaerat"
+               value="rerum"
                data-component="body" hidden>
     <br>
 <p>The customer date of birth. Example</p>
@@ -718,7 +718,7 @@ fetch(url, {
                 <input type="text"
                name="employment_status"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="dignissimos"
+               value="qui"
                data-component="body" hidden>
     <br>
 
@@ -728,7 +728,7 @@ fetch(url, {
                 <input type="text"
                name="civil_status"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="vel"
+               value="cumque"
                data-component="body" hidden>
     <br>
 
@@ -738,7 +738,7 @@ fetch(url, {
                 <input type="text"
                name="telephone"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="aut"
+               value="officiis"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -888,7 +888,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"debitis\"
+    \"order_type\": \"tenetur\"
 }"
 </code></pre></div>
 
@@ -904,7 +904,7 @@ const headers = {
 };
 
 let body = {
-    "order_type": "debitis"
+    "order_type": "tenetur"
 };
 
 fetch(url, {
@@ -970,24 +970,24 @@ fetch(url, {
                 <input type="text"
                name="order_type"
                data-endpoint="POSTapi-v1-submit-request"
-               value="debitis"
+               value="tenetur"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
         </p>
         </form>
 
-        <h1 id="document-upload">Document upload</h1>
+        <h1 id="document">Document</h1>
 
     
 
-            <h2 id="document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</h2>
+            <h2 id="document-POSTapi-v1-document-upload">Upload</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>This endpoint is used for document upload, available types are 'passport,id_card,guarantor_id,proof_of_income'</p>
 
 <span id="example-requests-POSTapi-v1-document-upload">
 <blockquote>Example request:</blockquote>
@@ -999,7 +999,7 @@ fetch(url, {
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "type=passport" \
-    --form "document=@/tmp/php6Egg3S" </code></pre></div>
+    --form "document=@/tmp/php8vSl5P" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1085,7 +1085,7 @@ fetch(url, {
 <p>The id of the user.</p>
         </p>
                 <p>
-            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="type"
                data-endpoint="POSTapi-v1-document-upload"
@@ -1218,14 +1218,14 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://altara-customer-play-api.herokuapp.com/api/v1/customers/8/notifications" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/v1/customers/11/notifications" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/8/notifications"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/11/notifications"
 );
 
 const headers = {
@@ -1310,7 +1310,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
                 <input type="number"
                name="customer_id"
                data-endpoint="GETapi-v1-customers--customer_id--notifications"
-               value="8"
+               value="11"
                data-component="url" hidden>
     <br>
 <p>The ID of the customer.</p>
@@ -1338,8 +1338,8 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"dolor\",
-    \"regenerate\": true
+    \"phone_number\": \"ea\",
+    \"regenerate\": false
 }"
 </code></pre></div>
 
@@ -1355,8 +1355,8 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "dolor",
-    "regenerate": true
+    "phone_number": "ea",
+    "regenerate": false
 };
 
 fetch(url, {
@@ -1414,7 +1414,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="dolor"
+               value="ea"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

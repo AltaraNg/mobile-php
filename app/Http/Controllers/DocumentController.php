@@ -21,6 +21,11 @@ use Illuminate\Validation\Rule;
 class DocumentController extends Controller
 {
     /**
+     * 
+     * Upload
+     * 
+     * This endpoint is used for document upload
+     * 
      * @bodyParam document file required The id of the user. No-example
      * @bodyParam type string The type of document been uploaded. Example: passport
      */

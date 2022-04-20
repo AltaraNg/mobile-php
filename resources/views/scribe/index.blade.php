@@ -70,16 +70,6 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="document-upload">
-                    <a href="#document-upload">Document upload</a>
-                </li>
-                                    <ul id="tocify-subheader-document-upload" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="document-upload-POSTapi-v1-document-upload">
-                        <a href="#document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</a>
-                    </li>
-                                                    </ul>
-                            </ul>
-                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentication">
                     <a href="#authentication">Authentication</a>
                 </li>
@@ -95,7 +85,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="customer">
                     <a href="#customer">Customer</a>
                 </li>
@@ -105,7 +95,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-5" class="tocify-header">
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="customer-order">
                     <a href="#customer-order">Customer Order</a>
                 </li>
@@ -115,6 +105,16 @@
                     </li>
                                     <li class="tocify-item level-2" data-unique="customer-order-POSTapi-v1-submit-request">
                         <a href="#customer-order-POSTapi-v1-submit-request">Apply for Orders</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="document-upload">
+                    <a href="#document-upload">Document upload</a>
+                </li>
+                                    <ul id="tocify-subheader-document-upload" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="document-upload-POSTapi-v1-document-upload">
+                        <a href="#document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -173,129 +173,10 @@ You can switch the language used with the tabs at the top right (or from the nav
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://localhost</code></pre>
+<pre><code class="language-yaml">https://altara-customer-play-api.herokuapp.com</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
-
-        <h1 id="document-upload">Document upload</h1>
-
-    
-
-            <h2 id="document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-document-upload">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/document/upload" \
-    --header "Content-Type: multipart/form-data" \
-    --header "Accept: application/json" \
-    --form "type=passport" \
-    --form "document=@/tmp/phpoUZX1R" </code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/document/upload"
-);
-
-const headers = {
-    "Content-Type": "multipart/form-data",
-    "Accept": "application/json",
-};
-
-const body = new FormData();
-body.append('type', 'passport');
-body.append('document', document.querySelector('input[name="document"]').files[0]);
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-document-upload">
-</span>
-<span id="execution-results-POSTapi-v1-document-upload" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-document-upload"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-document-upload"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-document-upload" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-document-upload"></code></pre>
-</span>
-<form id="form-POSTapi-v1-document-upload" data-method="POST"
-      data-path="api/v1/document/upload"
-      data-authed="1"
-      data-hasfiles="1"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-document-upload', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-document-upload"
-                    onclick="tryItOut('POSTapi-v1-document-upload');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-document-upload"
-                    onclick="cancelTryOut('POSTapi-v1-document-upload');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-document-upload" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/document/upload</code></b>
-        </p>
-                <p>
-            <label id="auth-POSTapi-v1-document-upload" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="POSTapi-v1-document-upload"
-                                                                data-component="header"></label>
-        </p>
-                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>document</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
-                <input type="file"
-               name="document"
-               data-endpoint="POSTapi-v1-document-upload"
-               value=""
-               data-component="body" hidden>
-    <br>
-<p>The id of the user.</p>
-        </p>
-                <p>
-            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="type"
-               data-endpoint="POSTapi-v1-document-upload"
-               value="passport"
-               data-component="body" hidden>
-    <br>
-<p>The type of document been uploaded.</p>
-        </p>
-        </form>
 
         <h1 id="authentication">Authentication</h1>
 
@@ -314,20 +195,20 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/login" \
+    "https://altara-customer-play-api.herokuapp.com/api/v1/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"delectus\",
-    \"otp\": \"porro\",
-    \"device_name\": \"qui\"
+    \"phone_number\": \"tempore\",
+    \"otp\": \"voluptates\",
+    \"device_name\": \"quia\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/login"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/auth/login"
 );
 
 const headers = {
@@ -336,9 +217,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "delectus",
-    "otp": "porro",
-    "device_name": "qui"
+    "phone_number": "tempore",
+    "otp": "voluptates",
+    "device_name": "quia"
 };
 
 fetch(url, {
@@ -396,7 +277,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-auth-login"
-               value="delectus"
+               value="tempore"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -406,7 +287,7 @@ fetch(url, {
                 <input type="text"
                name="otp"
                data-endpoint="POSTapi-v1-auth-login"
-               value="porro"
+               value="voluptates"
                data-component="body" hidden>
     <br>
 <p>The otp sent to the customer phone number</p>
@@ -416,7 +297,7 @@ fetch(url, {
                 <input type="text"
                name="device_name"
                data-endpoint="POSTapi-v1-auth-login"
-               value="qui"
+               value="quia"
                data-component="body" hidden>
     <br>
 <p>The customer device name been used</p>
@@ -437,14 +318,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/auth/user" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/v1/auth/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/user"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/auth/user"
 );
 
 const headers = {
@@ -547,14 +428,14 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/auth/logout" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/v1/auth/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/logout"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/auth/logout"
 );
 
 const headers = {
@@ -660,27 +541,27 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/customers/1" \
+    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"first_name\": \"John\",
     \"last_name\": \"Doe\",
     \"add_street\": \"48 Ogunaike street, Ikoyi, Lagos State.\",
-    \"city\": \"est\",
-    \"state\": \"sint\",
+    \"city\": \"temporibus\",
+    \"state\": \"amet\",
     \"gender\": \"male\",
-    \"date_of_birth\": \"laudantium\",
-    \"employment_status\": \"consequatur\",
-    \"civil_status\": \"accusantium\",
-    \"telephone\": \"rerum\"
+    \"date_of_birth\": \"quaerat\",
+    \"employment_status\": \"dignissimos\",
+    \"civil_status\": \"vel\",
+    \"telephone\": \"aut\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/customers/1"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/1"
 );
 
 const headers = {
@@ -692,13 +573,13 @@ let body = {
     "first_name": "John",
     "last_name": "Doe",
     "add_street": "48 Ogunaike street, Ikoyi, Lagos State.",
-    "city": "est",
-    "state": "sint",
+    "city": "temporibus",
+    "state": "amet",
     "gender": "male",
-    "date_of_birth": "laudantium",
-    "employment_status": "consequatur",
-    "civil_status": "accusantium",
-    "telephone": "rerum"
+    "date_of_birth": "quaerat",
+    "employment_status": "dignissimos",
+    "civil_status": "vel",
+    "telephone": "aut"
 };
 
 fetch(url, {
@@ -797,7 +678,7 @@ fetch(url, {
                 <input type="text"
                name="city"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="est"
+               value="temporibus"
                data-component="body" hidden>
     <br>
 <p>The customer city.</p>
@@ -807,7 +688,7 @@ fetch(url, {
                 <input type="text"
                name="state"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="sint"
+               value="amet"
                data-component="body" hidden>
     <br>
 <p>The customer state.</p>
@@ -827,7 +708,7 @@ fetch(url, {
                 <input type="text"
                name="date_of_birth"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="laudantium"
+               value="quaerat"
                data-component="body" hidden>
     <br>
 <p>The customer date of birth. Example</p>
@@ -837,7 +718,7 @@ fetch(url, {
                 <input type="text"
                name="employment_status"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="consequatur"
+               value="dignissimos"
                data-component="body" hidden>
     <br>
 
@@ -847,7 +728,7 @@ fetch(url, {
                 <input type="text"
                name="civil_status"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="accusantium"
+               value="vel"
                data-component="body" hidden>
     <br>
 
@@ -857,7 +738,7 @@ fetch(url, {
                 <input type="text"
                name="telephone"
                data-endpoint="PATCHapi-v1-customers--customer-"
-               value="rerum"
+               value="aut"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>
@@ -882,14 +763,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/customers/1/orders" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/v1/customers/1/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/customers/1/orders"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/1/orders"
 );
 
 const headers = {
@@ -1003,18 +884,18 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/submit/request" \
+    "https://altara-customer-play-api.herokuapp.com/api/v1/submit/request" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"fugiat\"
+    \"order_type\": \"debitis\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/submit/request"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/submit/request"
 );
 
 const headers = {
@@ -1023,7 +904,7 @@ const headers = {
 };
 
 let body = {
-    "order_type": "fugiat"
+    "order_type": "debitis"
 };
 
 fetch(url, {
@@ -1089,10 +970,129 @@ fetch(url, {
                 <input type="text"
                name="order_type"
                data-endpoint="POSTapi-v1-submit-request"
-               value="fugiat"
+               value="debitis"
                data-component="body" hidden>
     <br>
 <p>The type of product customer is requesting. Example Product or Loan</p>
+        </p>
+        </form>
+
+        <h1 id="document-upload">Document upload</h1>
+
+    
+
+            <h2 id="document-upload-POSTapi-v1-document-upload">POST api/v1/document/upload</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-document-upload">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://altara-customer-play-api.herokuapp.com/api/v1/document/upload" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "type=passport" \
+    --form "document=@/tmp/php6Egg3S" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://altara-customer-play-api.herokuapp.com/api/v1/document/upload"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('type', 'passport');
+body.append('document', document.querySelector('input[name="document"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-document-upload">
+</span>
+<span id="execution-results-POSTapi-v1-document-upload" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-document-upload"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-document-upload"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-document-upload" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-document-upload"></code></pre>
+</span>
+<form id="form-POSTapi-v1-document-upload" data-method="POST"
+      data-path="api/v1/document/upload"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-document-upload', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-document-upload"
+                    onclick="tryItOut('POSTapi-v1-document-upload');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-document-upload"
+                    onclick="cancelTryOut('POSTapi-v1-document-upload');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-document-upload" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/document/upload</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-document-upload" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-document-upload"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>document</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="document"
+               data-endpoint="POSTapi-v1-document-upload"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>The id of the user.</p>
+        </p>
+                <p>
+            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="type"
+               data-endpoint="POSTapi-v1-document-upload"
+               value="passport"
+               data-component="body" hidden>
+    <br>
+<p>The type of document been uploaded.</p>
         </p>
         </form>
 
@@ -1113,14 +1113,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/user" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
+    "https://altara-customer-play-api.herokuapp.com/api/user"
 );
 
 const headers = {
@@ -1218,14 +1218,14 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/customers/13/notifications" \
+    --get "https://altara-customer-play-api.herokuapp.com/api/v1/customers/8/notifications" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/customers/13/notifications"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/customers/8/notifications"
 );
 
 const headers = {
@@ -1310,7 +1310,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
                 <input type="number"
                name="customer_id"
                data-endpoint="GETapi-v1-customers--customer_id--notifications"
-               value="13"
+               value="8"
                data-component="url" hidden>
     <br>
 <p>The ID of the customer.</p>
@@ -1334,11 +1334,11 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/otp/send" \
+    "https://altara-customer-play-api.herokuapp.com/api/v1/otp/send" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"ullam\",
+    \"phone_number\": \"dolor\",
     \"regenerate\": true
 }"
 </code></pre></div>
@@ -1346,7 +1346,7 @@ access-control-allow-headers: X-Requested-With, Content-Type, Origin, Authorizat
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/otp/send"
+    "https://altara-customer-play-api.herokuapp.com/api/v1/otp/send"
 );
 
 const headers = {
@@ -1355,7 +1355,7 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "ullam",
+    "phone_number": "dolor",
     "regenerate": true
 };
 
@@ -1414,7 +1414,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-v1-otp-send"
-               value="ullam"
+               value="dolor"
                data-component="body" hidden>
     <br>
 <p>The customer phone number.</p>

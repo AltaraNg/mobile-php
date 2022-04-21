@@ -36,7 +36,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         //set data based on customer on_boarded status
-        $data = $customer->on_boarded ? $request->validated() :  array_merge(['on_boarded' => true], $request->validated());
+        $data = $request->validated();
         $res = $this->customerRepository->update($customer->id, $data);
         if (!$res) {
             return $this->sendError('Profile could not be updated, please try again later', HttpResponseCodes::ACTION_FAILED);

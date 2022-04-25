@@ -31,6 +31,16 @@ class SendBroadCastMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('broadcast-message');
+        return new Channel('broadcast-message-channel');
+    }
+
+    /**
+     * The event's broadcast name.
+     *
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'broadcast.message.event';
     }
 }

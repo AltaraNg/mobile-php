@@ -21,6 +21,6 @@ class Customer extends Authenticatable
 
     public function verification()
     {
-        return $this->hasOne(Verification::class);
+        return $this->hasOne(Verification::class)->withDefault();
     }
 }

@@ -41,6 +41,7 @@ class CustomerResource extends JsonResource
             'relationships' => [],
             'included' => [
                 'orders' => OrderResource::collection($this->whenLoaded('orders')),
+                'verification' => new VerificationResource($this->whenLoaded('verification')),
             ]
         ];
     }

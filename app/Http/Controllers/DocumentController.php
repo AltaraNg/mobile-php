@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Document;
+use App\Models\Verification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -47,6 +48,12 @@ class DocumentController extends Controller
                         $document_column => $filePath,
                         'user_id' => 1,
                         'staff_name' => 'mobile',
+                    ]
+                );
+                Verification::updateOrCreate(
+                    ['customer_id' => $customer->id],
+                    [
+                        $request->type => true,
                     ]
                 );
             }

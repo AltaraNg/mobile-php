@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use App\Models\Document;
 use App\Models\Verification;
@@ -58,7 +59,7 @@ class DocumentController extends Controller
                 );
             }
         }
-        return $this->sendSuccess([], str_replace("_", ' ', ucfirst($request->type)) . ' uploaded successfully');
+        return $this->sendSuccess(['user' => new CustomerResource(auth()->user()->fresh())], str_replace("_", ' ', ucfirst($request->type)) . ' uploaded successfully');
     }
 
 

@@ -13,6 +13,7 @@ class Customer extends Authenticatable
 
     protected $guard = 'customer';
     protected $guarded = [];
+    protected $with = ['verification'];
 
     public function orders(): HasMany
     {

@@ -1,0 +1,34 @@
+name: Document
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/document/upload
+    metadata:
+      title: Upload
+      description: 'This endpoint is used for document upload, available types are passport,id_card,guarantor_id,proof_of_income'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      document:
+        name: document
+        description: 'The id of the user.'
+        required: true
+        example: null
+        type: file
+        custom: []
+      type:
+        name: type
+        description: 'The type of document been uploaded.'
+        required: true
+        example: passport
+        type: string
+        custom: []
+    responses: []
+    responseFields: []

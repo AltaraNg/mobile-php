@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
+use App\Models\OrderRequest;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
 use App\Services\GoogleSheetService;
 use Carbon\Carbon;
@@ -85,8 +86,16 @@ class CustomerOrderController extends Controller
         }
 
         if ($info["http_code"] == 411 || 200) {
-            return $this->sendSuccess([], 'Order request has successfully been submitted');
+           $orderRequest = OrderRequest::create([
+                'customer_id' => $customer->id,
+                'order_type' => $request->order_type,
+                'request_date' => now(),
+                'status' => 'placed'
+            ]);
+            return $this->sendSuccess(['order_request' => $orderRequest], 'Order request has successfully been submitted');
         }
         return $this->sendError('Unable to submit order request, kindly contact admin', 500);
     }
+
+    
 }

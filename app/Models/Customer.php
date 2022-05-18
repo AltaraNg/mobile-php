@@ -24,4 +24,9 @@ class Customer extends Authenticatable
     {
         return $this->hasOne(Verification::class)->withDefault();
     }
+
+    public function order_requests()
+    {
+        return $this->hasMany(OrderRequest::class);
+    }
 }

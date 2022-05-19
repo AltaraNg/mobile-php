@@ -14,20 +14,20 @@ use Illuminate\Validation\Rule;
 
 /**
  * @group Document
- * 
+ *
  * @authenticated
  *
  * Api Endpoints for Customer document upload
- * 
+ *
  */
 class DocumentController extends Controller
 {
     /**
-     * 
+     *
      * Upload
-     * 
+     *
      * This endpoint is used for document upload, available types are passport,id_card,guarantor_id,proof_of_income
-     * 
+     *
      * @bodyParam document file required The id of the user. No-example
      * @bodyParam type string required The type of document been uploaded. Example: passport
      */

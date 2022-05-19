@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * @group Customer Order
- * 
+ *
  * @authenticated
  *
  * Api Endpoints for Customer order
- * 
+ *
  */
 class CustomerOrderController extends Controller
 {
@@ -97,5 +97,5 @@ class CustomerOrderController extends Controller
         return $this->sendError('Unable to submit order request, kindly contact admin', 500);
     }
 
-    
+
 }

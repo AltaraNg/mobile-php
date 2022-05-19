@@ -90,7 +90,7 @@ class CustomerOrderController extends Controller
                 'customer_id' => $customer->id,
                 'order_type' => $request->order_type,
                 'request_date' => now(),
-                'status' => 'placed'
+                'status' => OrderRequest::STATUS_PENDING
             ]);
             return $this->sendSuccess(['order_request' => $orderRequest], 'Order request has successfully been submitted');
         }

@@ -13,6 +13,7 @@ class Customer extends Authenticatable
 
     protected $guard = 'customer';
     protected $guarded = [];
+    protected $with = ['verification'];
 
     public function orders(): HasMany
     {
@@ -22,5 +23,10 @@ class Customer extends Authenticatable
     public function verification()
     {
         return $this->hasOne(Verification::class)->withDefault();
+    }
+
+    public function order_requests()
+    {
+        return $this->hasMany(OrderRequest::class);
     }
 }

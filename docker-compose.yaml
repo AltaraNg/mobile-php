@@ -15,8 +15,7 @@ services:
     volumes:
       - ./:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    external_links:
-      - altara_db
+
     networks:
       - servers_altara-servers
 
@@ -34,7 +33,25 @@ services:
     networks:
       - servers_altara-servers
 
+  db:
+    image: mysql:5.7.22
+    container_name: altara_db
+    tty: true
+    ports:
+      - "7072:3306"
+    environment:
+      MYSQL_DATABASE: altara
+      MYSQL_ROOT_PASSWORD: password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - servers_altara-servers
+
 #Docker Networks
 networks:
-   servers_altara-servers:
-      external: true
+  servers_altara-servers:
+       name: altara
+  driver: bridge

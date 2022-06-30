@@ -50,4 +50,8 @@ class Order extends Model
     {
         return $this->belongsTo(RepaymentCycle::class);
     }
+
+    public function lateFee(){
+        return $this->hasMany(LateFee::class, 'order_id');
+    }
 }

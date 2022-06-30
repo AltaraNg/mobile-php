@@ -38,7 +38,7 @@ class CustomerOrderController extends Controller
      */
     public function show(Customer $customer)
     {
-        $customer = $customer->load('orders', 'orders.amortizations', 'orders.product', 'orders.businessType',  'orders.downPaymentRate',  'orders.orderType',  'orders.repaymentDuration',  'orders.salesCategory',  'orders.repaymentCycle', 'verification');
+        $customer = $customer->load('orders', 'orders.amortizations', 'orders.product', 'orders.businessType',  'orders.downPaymentRate',  'orders.orderType',  'orders.repaymentDuration',  'orders.salesCategory',  'orders.repaymentCycle', 'verification', 'orders.lateFee');
         return $this->sendSuccess([new CustomerResource($customer)], 'Customer orders successfully fetched');
     }
 

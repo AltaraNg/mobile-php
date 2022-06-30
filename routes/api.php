@@ -45,5 +45,5 @@ Route::prefix('v1')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');
     });
 
-    // Route::get('customers/{customer}/requests', [OrderRequestController::class, 'index'])->name('customers.order-requests');
+   
 });

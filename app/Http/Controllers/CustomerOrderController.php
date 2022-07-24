@@ -38,7 +38,7 @@ class CustomerOrderController extends Controller
      */
     public function show(Customer $customer)
     {
-        $customer = $customer->load('orders', 'orders.amortizations', 'orders.product', 'orders.businessType',  'orders.downPaymentRate',  'orders.orderType',  'orders.repaymentDuration',  'orders.salesCategory',  'orders.repaymentCycle', 'verification');
+        $customer = $customer->load('orders', 'orders.amortizations', 'orders.product', 'orders.businessType',  'orders.downPaymentRate',  'orders.orderType',  'orders.repaymentDuration',  'orders.salesCategory',  'orders.repaymentCycle', 'verification', 'orders.lateFee');
         return $this->sendSuccess([new CustomerResource($customer)], 'Customer orders successfully fetched');
     }
 
@@ -86,7 +86,7 @@ class CustomerOrderController extends Controller
         }
 
         if ($info["http_code"] == 411 || 200) {
-           $orderRequest = OrderRequest::create([
+            $orderRequest = OrderRequest::create([
                 'customer_id' => $customer->id,
                 'order_type' => $request->order_type,
                 'request_date' => now(),
@@ -96,6 +96,4 @@ class CustomerOrderController extends Controller
         }
         return $this->sendError('Unable to submit order request, kindly contact admin', 500);
     }
-
-
 }

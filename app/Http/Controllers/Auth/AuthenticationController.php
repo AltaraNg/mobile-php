@@ -87,6 +87,7 @@ class AuthenticationController extends Controller
     private function setNotNullableFields()
     {
         return [
+            'registration_channel' => 'mobile',
             'first_name' => 'N/A',
             'last_name' => 'N/A',
             'on_boarded' => false,

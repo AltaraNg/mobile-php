@@ -14,7 +14,14 @@ class Customer extends Authenticatable
     protected $guard = 'customer';
     protected $guarded = [];
     protected $with = ['verification'];
-
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password'
+    ];
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class, 'customer_id');

@@ -27,7 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
-        Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
+        Route::post('/login/with-otp', [AuthenticationController::class, 'loginWithOtp'])->name('login.otp');
+        Route::post('/login/with-password', [AuthenticationController::class, 'loginWithPassword'])->name('login.password');
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('/user', [AuthenticationController::class, 'user']);
             Route::get('/logout', [AuthenticationController::class, 'logout']);
@@ -44,4 +45,5 @@ Route::prefix('v1')->group(function () {
     Route::prefix('otp')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');
     });
+    Route::get('/customer/exists/{phone_number}', [AuthenticationController::class, 'customerExist']);
 });

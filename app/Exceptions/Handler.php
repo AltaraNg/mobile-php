@@ -15,7 +15,7 @@ use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -60,6 +60,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+
         if ($request->is('api*')) {
             if ($e instanceof ValidationException) { //handle validation errors
                 $data = ["errors" => $e->validator->getMessageBag()->getMessages()];
@@ -95,6 +96,13 @@ class Handler extends ExceptionHandler
                     HttpResponseCodes::UNABLE_TO_PROCESS,
                     [],
                     HttpResponseCodes::UNPROCESSABLE_ENTITY
+                );
+            } elseif ($e instanceof NotFoundHttpException) {
+                return HttpResponseHelper::createErrorResponse(
+                    'Route not found',
+                    HttpResponseCodes::NOT_FOUND,
+                    [],
+                    HttpResponseCodes::NOT_FOUND
                 );
             } else {
                 return HttpResponseHelper::createErrorResponse(

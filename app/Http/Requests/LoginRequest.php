@@ -33,7 +33,7 @@ class LoginRequest extends FormRequest
         return [
             'phone_number' => ['required', 'string'],
             'otp' => [new RequiredIf($this->login_type == 'otp'), 'string', 'min:4'],
-            'password' => [new RequiredIf($this->login_type == 'password'), 'string', 'min:4'],
+            'password' => [new RequiredIf($this->login_type == 'password'), 'string'],
             'device_name' => ['required', 'string'],
             'login_type' => ['required', 'string', Rule::in(['otp', 'password'])]
         ];

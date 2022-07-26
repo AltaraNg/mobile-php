@@ -10,12 +10,9 @@ use App\Services\MessageService;
 use App\Helper\HttpResponseCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\CustomerResource;
 
-use App\Http\Requests\LoginWithOtpRequest;
-use App\Http\Requests\LoginWithPasswordRequest;
 use App\Repositories\Eloquent\Repository\CustomerRepository;
 
 /**

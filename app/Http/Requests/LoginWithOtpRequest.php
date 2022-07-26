@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginWithOtpRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class LoginWithOtpRequest extends FormRequest
         return [
             'phone_number' => ['required', 'string'],
             'otp' => ['required', 'string', 'min:4'],
-            'device_name' => ['required', 'string']
+            'device_name' => ['required', 'string'],
+            'login_type' =>['required', 'string', Rule::in(['otp', 'password'])]
         ];
     }
 }

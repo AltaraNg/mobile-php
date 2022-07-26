@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Services\MessageService;
 use App\Helper\HttpResponseCodes;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\CustomerResource;
@@ -35,29 +36,33 @@ class AuthenticationController extends Controller
         $this->messageService = $messageService;
     }
 
+
+    public function login(LoginRequest $request)
+    {
+        $customer = $this->getFirstCustomerOrCreate($request->phone_number);
+        $validatedData = (object) $request->validated();
+        if ($request->login_type == 'otp') {
+            return  $this->loginWithOtp($validatedData, $customer);
+        }
+        if ($request->login_type == 'password') {
+            return $this->loginWithPassword($validatedData, $customer);
+        }
+    }
+
     /**
      * Login With Otp
      *
      * Log customer in using the provided phone number and otp
      *
      */
-    public function loginWithOtp(LoginWithOtpRequest $request)
+    private function loginWithOtp($requestData, $customer)
     {
-        $customer = Customer::firstOrCreate(
-            ['telephone' => $request->phone_number],
-            $this->setNotNullableFields()
-        );
 
-        $otp = $this->otpService->validate($request->phone_number, $request->otp);
+        $otp = $this->otpService->validate($requestData->phone_number, $requestData->otp);
         if (!$otp->status) {
             return $this->sendError($otp->message, HttpResponseCodes::OTP_NOT_EXPIRED);
         }
-        $token = $customer->createToken($request->device_name)->plainTextToken;
-        $data = [
-            'token' => $token,
-            'user' => new CustomerResource($customer),
-        ];
-        return $this->sendSuccess($data, 'Logged in successfully');
+        return $this->sendToken($customer, $requestData->device_name);
     }
 
     /**
@@ -66,25 +71,17 @@ class AuthenticationController extends Controller
      * Log customer in using the provided phone number and password
      *
      */
-    public function loginWithPassword(LoginWithPasswordRequest $request)
+    private function loginWithPassword($requestData, $customer)
     {
-        $customer = Customer::firstOrCreate(
-            ['telephone' => $request->phone_number],
-            $this->setNotNullableFields()
-        );
         if ($customer->password == null || !$customer->password) {
-            $customer->password = Hash::make($request->password);
+            $customer->password = Hash::make($requestData->password);
             $customer->save();
         }
-        if (Hash::check($request->password, $customer->password) != true) {
+        if (Hash::check($requestData->password, $customer->password) != true) {
             return $this->sendError('Credential provided is invalid', HttpResponseCodes::BAD_REQUEST);
         }
-        $token = $customer->createToken($request->device_name)->plainTextToken;
-        $data = [
-            'token' => $token,
-            'user' => new CustomerResource($customer),
-        ];
-        return $this->sendSuccess($data, 'Logged in successfully');
+
+        return $this->sendToken($customer, $requestData->device_name);
     }
 
     public function customerExist($phone_number)
@@ -96,6 +93,23 @@ class AuthenticationController extends Controller
         return $this->sendSuccess([], 'Customer found');
     }
 
+    private function sendToken($customer, $device_name)
+    {
+        $token = $customer->createToken($device_name)->plainTextToken;
+        $data = [
+            'token' => $token,
+            'user' => new CustomerResource($customer),
+        ];
+        return $this->sendSuccess($data, 'Logged in successfully');
+    }
+
+    private function getFirstCustomerOrCreate($phone_number)
+    {
+        return Customer::firstOrCreate(
+            ['telephone' => $phone_number],
+            $this->setNotNullableFields()
+        );
+    }
 
     /**
      * Logout

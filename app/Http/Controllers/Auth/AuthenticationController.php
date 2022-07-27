@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Auth;
 use Carbon\Carbon;
 use App\Models\Customer;
 use App\Services\OtpService;
+use Illuminate\Http\Request;
 use App\Services\MessageService;
 use App\Helper\HttpResponseCodes;
-use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\CustomerResource;
-use App\Http\Requests\StoreCustomerRequest;
+
 use App\Repositories\Eloquent\Repository\CustomerRepository;
 
 /**
@@ -31,23 +33,66 @@ class AuthenticationController extends Controller
         $this->messageService = $messageService;
     }
 
+
+    public function login(LoginRequest $request)
+    {
+        $customer = $this->getFirstCustomerOrCreate($request->phone_number);
+        $validatedData = (object) $request->validated();
+        if ($request->login_type == 'otp') {
+            return  $this->loginWithOtp($validatedData, $customer);
+        }
+        if ($request->login_type == 'password') {
+            return $this->loginWithPassword($validatedData, $customer);
+        }
+    }
+
     /**
-     * Login
+     * Login With Otp
      *
      * Log customer in using the provided phone number and otp
      *
      */
-    public function login(LoginRequest $request)
+    private function loginWithOtp($requestData, $customer)
     {
-        $customer = Customer::firstOrCreate(
-            ['telephone' => $request->phone_number],
-            $this->setNotNullableFields()
-        );
-        $otp = $this->otpService->validate($request->phone_number, $request->otp);
+
+        $otp = $this->otpService->validate($requestData->phone_number, $requestData->otp);
         if (!$otp->status) {
             return $this->sendError($otp->message, HttpResponseCodes::OTP_NOT_EXPIRED);
         }
-        $token = $customer->createToken($request->device_name)->plainTextToken;
+        return $this->sendToken($customer, $requestData->device_name);
+    }
+
+    /**
+     * Login With Password
+     *
+     * Log customer in using the provided phone number and password
+     *
+     */
+    private function loginWithPassword($requestData, $customer)
+    {
+        if ($customer->password == null || !$customer->password) {
+            $customer->password = Hash::make($requestData->password);
+            $customer->save();
+        }
+        if (Hash::check($requestData->password, $customer->password) != true) {
+            return $this->sendError('Credential provided is invalid', HttpResponseCodes::BAD_REQUEST);
+        }
+
+        return $this->sendToken($customer, $requestData->device_name);
+    }
+
+    public function customerExist($phone_number)
+    {
+        $customerExists = Customer::where('telephone', $phone_number)->first();
+        if (!$customerExists) {
+            return $this->sendError('Customer not found', HttpResponseCodes::NOT_FOUND);
+        }
+        return $this->sendSuccess([], 'Customer found');
+    }
+
+    private function sendToken($customer, $device_name)
+    {
+        $token = $customer->createToken($device_name)->plainTextToken;
         $data = [
             'token' => $token,
             'user' => new CustomerResource($customer),
@@ -55,6 +100,13 @@ class AuthenticationController extends Controller
         return $this->sendSuccess($data, 'Logged in successfully');
     }
 
+    private function getFirstCustomerOrCreate($phone_number)
+    {
+        return Customer::firstOrCreate(
+            ['telephone' => $phone_number],
+            $this->setNotNullableFields()
+        );
+    }
 
     /**
      * Logout
@@ -98,8 +150,8 @@ class AuthenticationController extends Controller
             'add_nbstop' => 'N/A',
             'area_address' => 'N/A',
             'add_houseno' => 'N/A',
-            'city' => 'N/A', 
-            'state' => 'N/A', 
+            'city' => 'N/A',
+            'state' => 'N/A',
             'gender' => 'N/A',
             'date_of_birth' => 'N/A',
             'civil_status' => 'N/A',

@@ -46,4 +46,5 @@ Route::prefix('v1')->group(function () {
     Route::prefix('otp')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');
     });
+    Route::get('/customer/exists/{phone_number}', [AuthenticationController::class, 'customerExist']);
 });

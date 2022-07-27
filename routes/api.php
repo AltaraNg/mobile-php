@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderRequestController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::middleware('auth:sanctum')->group(function () {
+        Route::patch('/notification/{notification}', [NotificationController::class, 'update'])->name('notification.update');
         Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customer.update');
         Route::get('/customers/{customer}/orders', [CustomerOrderController::class, 'show'])->name('customer.order.show');
         Route::post('/submit/request', [CustomerOrderController::class, 'submitRequest'])->name('customer.order.request');

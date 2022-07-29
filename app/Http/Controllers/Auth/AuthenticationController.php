@@ -87,7 +87,8 @@ class AuthenticationController extends Controller
         if (!$customerExists) {
             return $this->sendError('Customer not found', HttpResponseCodes::NOT_FOUND);
         }
-        return $this->sendSuccess([], 'Customer found');
+        $customerHasPassword = isset($customerExists->password) ? true : false;
+        return $this->sendSuccess(['has_password' => $customerHasPassword], 'Customer found');
     }
 
     private function sendToken($customer, $device_name)

@@ -85,7 +85,7 @@ class AuthenticationController extends Controller
     {
         $customerExists = Customer::where('telephone', $phone_number)->first();
         if (!$customerExists) {
-            return $this->sendError('Customer not found', HttpResponseCodes::NOT_FOUND);
+            return $this->sendError('Customer not found', HttpResponseCodes::NOT_FOUND, [], 404);
         }
         $customerHasPassword = isset($customerExists->password) ? true : false;
         return $this->sendSuccess(['has_password' => $customerHasPassword], 'Customer found');

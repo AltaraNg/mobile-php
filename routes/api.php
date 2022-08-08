@@ -8,6 +8,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderRequestController;
 use App\Http\Controllers\OtpController;
+use App\Http\Controllers\PriceCalculatorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,4 +48,5 @@ Route::prefix('v1')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');
     });
     Route::get('/customer/exists/{phone_number}', [AuthenticationController::class, 'customerExist']);
+    Route::resource('price-calculators', PriceCalculatorController::class);
 });

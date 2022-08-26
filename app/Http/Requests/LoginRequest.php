@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\RequiredIf;
 
 /**
  * @bodyParam phone_number string required The customer phone number.
@@ -30,8 +32,10 @@ class LoginRequest extends FormRequest
     {
         return [
             'phone_number' => ['required', 'string'],
-            'otp' => ['required', 'string', 'min:4'],
-            'device_name' => ['required', 'string']
+            'otp' => [new RequiredIf($this->login_type == 'otp'), 'string', 'min:4'],
+            'password' => [new RequiredIf($this->login_type == 'password'), 'string'],
+            'device_name' => ['required', 'string'],
+            'login_type' => ['required', 'string', Rule::in(['otp', 'password'])]
         ];
     }
 }

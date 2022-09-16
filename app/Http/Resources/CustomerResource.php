@@ -40,7 +40,7 @@ class CustomerResource extends JsonResource
             ],
             'relationships' => [],
             'included' => [
-                'orders' => OrderResource::collection($this->whenLoaded('orders')),
+                'orders' => OrderResource::collection($this->whenLoaded('orders'))->sortByDesc('created_at'),
                 'verification' => new VerificationResource($this->whenLoaded('verification')),
             ]
         ];

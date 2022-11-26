@@ -91,6 +91,8 @@ class CustomerOrderController extends Controller
             $orderRequest = OrderRequest::create([
                 'customer_id' => $customer->id,
                 'order_type' => $request->order_type,
+                'branch' => $request->branch,
+                'staff_name' => $request->staff_name,
                 'request_date' => now(),
                 'status' => OrderRequest::STATUS_PENDING
             ]);

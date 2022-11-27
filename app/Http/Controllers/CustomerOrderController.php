@@ -57,6 +57,8 @@ class CustomerOrderController extends Controller
             'Name' => $customer->first_name . ' ' . $customer->last_name,
             'Phone_Number' => $customer->telephone,
             'Order_Type' => $request->order_type,
+            'Branch' => $request->branch,
+            'Owner' => $request->staff_name,
             'Request_Date' => Carbon::now()->format('Y-m-d')
         );
         try {
@@ -89,6 +91,8 @@ class CustomerOrderController extends Controller
             $orderRequest = OrderRequest::create([
                 'customer_id' => $customer->id,
                 'order_type' => $request->order_type,
+                'branch' => $request->branch,
+                'staff_name' => $request->staff_name,
                 'request_date' => now(),
                 'status' => OrderRequest::STATUS_PENDING
             ]);

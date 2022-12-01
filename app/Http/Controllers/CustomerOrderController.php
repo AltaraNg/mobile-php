@@ -57,7 +57,9 @@ class CustomerOrderController extends Controller
             'Name' => $customer->first_name . ' ' . $customer->last_name,
             'Phone_Number' => $customer->telephone,
             'Order_Type' => $request->order_type,
-            'Request_Date' => Carbon::now()->format('Y-m-d')
+            'Request_Date' => Carbon::now()->format('Y-m-d'),
+            'staff_name' => $request->staff_name,
+            'branch' => $request->branch,
         );
         try {
             $length = json_encode($input);

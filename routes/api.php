@@ -46,7 +46,7 @@ Route::prefix('v1')->group(function () {
         Route::get('customers/{customer}/requests', [OrderRequestController::class, 'index'])->name('customers.order-requests');
         Route::resource('branches', BranchController::class);
         Route::post('/document/upload', [DocumentController::class, 'store']);
-        Route::post('/audit', [CustomerMobileAppAuditController::class, 'store']);
+        Route::post('app/audit', [CustomerMobileAppAuditController::class, 'store']);
     });
     Route::prefix('otp')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');

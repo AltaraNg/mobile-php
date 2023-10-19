@@ -36,4 +36,20 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(OrderRequest::class);
     }
+
+    public function creditCheckerVerifications()
+    {
+        return $this->hasMany(CreditCheckerVerification::class, 'customer_id');
+    }
+
+    public function latestCreditCheckerVerifications()
+    {
+        return $this->hasOne(CreditCheckerVerification::class, 'customer_id')->latestOfMany();
+    }
+
+    public function guarantors()
+    {
+        return $this->hasMany(Guarantor::class, 'customer_id');
+    }
+
 }

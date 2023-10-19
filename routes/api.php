@@ -42,6 +42,7 @@ Route::prefix('v1')->group(function () {
         Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customer.update');
         Route::get('/customers/{customer}/orders', [CustomerOrderController::class, 'show'])->name('customer.order.show');
         Route::post('/submit/request', [CustomerOrderController::class, 'submitRequest'])->name('customer.order.request');
+        Route::post('/submit/loan/request', [CustomerOrderController::class, 'submitLoanRequest'])->name('customer.order.request');
         Route::get('/customers/{customer}/notifications', [CustomerNotificationController::class, 'show'])->name('customers.notifications.show');
         Route::get('customers/{customer}/requests', [OrderRequestController::class, 'index'])->name('customers.order-requests');
         Route::resource('branches', BranchController::class);

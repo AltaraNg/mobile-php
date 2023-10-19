@@ -82,7 +82,7 @@ class CustomerOrderController extends Controller
             $downpaymentRate = DownPaymentRate::query()->where('percent', 20)->first();
             $repaymentDuration = RepaymentDuration::query()->where('name', 'six_months')->first();
             $businessType = BusinessType::query()->where('slug', 'ap_starter_cash_loan-no_collateral')->first();
-            $product = Product::query()->updateOrCreate(
+            $product = Product::query()->firstOrCreate(
                 ['retail_price' => $request->input('loan_amount')],
                 [
                     'brand_id' => 1, 'category_id' => 4,

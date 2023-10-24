@@ -5,8 +5,11 @@ namespace App\Listeners;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\LoanSubmissionRequestEvent;
+use App\Models\CreditCheckerVerification;
+use App\Models\Customer;
 use App\Notifications\LoanRequestEmailNotification;
 use App\Notifications\PendingCreditCheckNotification;
+use App\Services\MessageService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
@@ -36,6 +39,7 @@ class LoanSubmissionRequestListener
         // $creditCheck = $event->creditCheckerVerification;
         $this->sendCreditCheckMailToAdmin($event->customer,  $event->product,  $event->creditCheckerVerification);
         $this->sendLoanRequestEmailToCustomer($event->customer,  $event->product,  $event->creditCheckerVerification);
+        $this->sendLoanRequestMessageToCustomer($event->creditCheckerVerification, $event->customer);
     }
 
     private function sendCreditCheckMailToAdmin($customer, $product, $creditCheckerVerification)
@@ -78,23 +82,27 @@ class LoanSubmissionRequestListener
         }
     }
 
-    private function sendLoanRequestMessageToCustomer($creditCheckerVerification)
+    private function sendLoanRequestMessageToCustomer(CreditCheckerVerification $creditCheckerVerification, Customer $customer)
     {
         try {
             $isInProduction = App::environment() === 'production';
-            $customerEmail =  config('app.credit_checker_mail');
+            $customerPhoneNumber =  $customer->telephone;
             //check if there is an authenticated user and app is not in production
             //if there is an authenticated user and is not in production
             // the authenticated user email receives the mail
             if (Auth::check() && !$isInProduction) {
-                $customerEmail = auth()->user()->email ?  auth()->user()->email : null;
+                $customerPhoneNumber = auth()->user()->telephone ?  auth()->user()->telephone : null;
             }
 
             Log::info("Mail about to be sent to customer if customer has a mail");
-            if ($customerEmail) {
-                
+            if ($customerPhoneNumber) {
+                $messageService = new MessageService();
+                $message = "Hello {$customer->first_name}, Thank you for your loan request. We are processing your application with id {$creditCheckerVerification->credit_check_no} and will notify you shortly.
+                ";
+                $messageService->sendMessage($customerPhoneNumber, $message);
             }
         } catch (\Throwable $th) {
+            dd($th);
             Log::error($th);
         }
     }

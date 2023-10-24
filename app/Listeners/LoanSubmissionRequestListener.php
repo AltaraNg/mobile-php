@@ -97,8 +97,7 @@ class LoanSubmissionRequestListener
             Log::info("Mail about to be sent to customer if customer has a mail");
             if ($customerPhoneNumber) {
                 $messageService = new MessageService();
-                $message = "Hello {$customer->first_name}, Thank you for your loan request. We are processing your application with id {$creditCheckerVerification->credit_check_no} and will notify you shortly.
-                ";
+                $message = "Hello {$customer->first_name}, Thank you for your loan request. We are processing your application with id {$creditCheckerVerification->credit_check_no} and will notify you shortly.";
                 $messageService->sendMessage($customerPhoneNumber, $message);
             }
         } catch (\Throwable $th) {

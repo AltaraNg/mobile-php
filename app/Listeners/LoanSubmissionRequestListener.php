@@ -101,7 +101,6 @@ class LoanSubmissionRequestListener
                 $messageService->sendMessage($customerPhoneNumber, $message);
             }
         } catch (\Throwable $th) {
-            dd($th);
             Log::error($th);
         }
     }

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Dtos\GuarantorDto;
+use App\Events\LoanSubmissionRequestEvent;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\BusinessType;
@@ -97,6 +98,7 @@ class CustomerOrderController extends Controller
             if ($customer->creditCheckerVerifications()->where('status', CreditCheckerVerification::PENDING)->exists()) {
                 $creditCheckerVerification = $customer->latestCreditCheckerVerifications()->where('status', CreditCheckerVerification::PENDING)->first();
             } else {
+                $customer_id  = request()->user()->id;
                 $creditCheckerVerification = CreditCheckerVerification::create([
                     'customer_id' =>  request()->user()->id,
                     'initiated_by' => 1,
@@ -107,7 +109,7 @@ class CustomerOrderController extends Controller
                     'product_id' => $product->id
                 ]);
 
-                $creditCheckerVerification->credit_check_no = $this->generateCreditCheckNumber($creditCheckerVerification->id, $creditCheckerVerification->initiated_by);
+                $creditCheckerVerification->credit_check_no = $this->generateCreditCheckNumber($creditCheckerVerification->id, $customer_id);
                 $creditCheckerVerification->update();
                 if ($request->has('documents')) {
                     $documents = $request->documents;
@@ -118,7 +120,8 @@ class CustomerOrderController extends Controller
                     $creditCheckerVerification->documents()->saveMany($customerDocuments);
                 }
             }
-            $this->sendCreditCheckMailToAdmin($customer, $product, $creditCheckerVerification);
+            // $this->sendCreditCheckMailToAdmin($customer, $product, $creditCheckerVerification);
+            event(new LoanSubmissionRequestEvent($customer, $product, $creditCheckerVerification));
             DB::commit();
             return $this->sendSuccess(['credit_check_verification' =>  $creditCheckerVerification], 'Credit check initiated and notification sent');
         } catch (\Throwable $th) {
@@ -219,4 +222,6 @@ class CustomerOrderController extends Controller
             Log::error($th);
         }
     }
+
+
 }

@@ -29,7 +29,6 @@ class LoanRequest extends FormRequest
             'repayment_cycle_id' => ['required', 'exists:repayment_cycles,id'],
             'down_payment' => ['required', 'numeric'],
             'loan_amount' => ['required', 'numeric', 'min:5000'],
-            'product_name' => ['required', 'string'],
             'documents' =>  ['sometimes', 'array', 'min:1'],
             'documents.*.url' => ['required', 'string'],
             'documents.*.name' => ['required', 'string'],

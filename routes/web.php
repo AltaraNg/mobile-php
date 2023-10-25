@@ -29,3 +29,9 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard/resend/{broadcast}', [DashboardController::class, 'resendMessage'])->name('resend-message');
     Route::get('/logout',  [AuthenticationController::class, 'logout'])->name('web-logout');
 });
+
+
+Route::get("/test/mail", function () {
+
+    return view('emails.customer-loan-request')->with([]);
+});

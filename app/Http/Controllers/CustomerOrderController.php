@@ -62,7 +62,7 @@ class CustomerOrderController extends Controller
             DB::beginTransaction();
             $user = $request->user();
             $customer = $this->customerRepository->findById($user->id);
-
+            // dd($customer);
             $guarantors  = GuarantorDto::fromOrderApiRequest($request, $user->id);
 
 

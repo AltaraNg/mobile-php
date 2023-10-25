@@ -60,6 +60,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'frontend_url' => env('FRONTEND_URL', 'https://play.altaracredit.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

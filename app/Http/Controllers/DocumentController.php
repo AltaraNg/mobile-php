@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use InvalidArgumentException;
 
 /**
  * @group Document
@@ -34,7 +35,7 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'document' => ['required', 'max:512', 'dimensions:max_width=1200,max_height=1200', 'mimes:jpeg,jpg,png,svg'],
+            'document' => ['required', 'file', 'max:512'],
             'type' => ['in:passport,id_card,guarantor_id,proof_of_income', 'string']
         ]);
         $document_column = $this->generateColumn($request->type);
@@ -60,6 +61,21 @@ class DocumentController extends Controller
             }
         }
         return $this->sendSuccess(['user' => new CustomerResource(auth()->user()->fresh())], str_replace("_", ' ', ucfirst($request->type)) . ' uploaded successfully');
+    }
+
+    public function uploadDocument(Request $request)
+    {
+        $this->validate($request, [
+            'document' => ['required', 'file', 'max:512'],
+            'type' => ["required", 'in:passport,id_card,guarantor_id,proof_of_income,bank_statement', 'string']
+        ]);
+        if (!$request->hasFile('document') || !$request->file('document')->isValid()) {
+            throw new InvalidArgumentException("please provide valid document");
+        }
+        $document = $request->file('document');
+        $filePath = $request->type . '/' . $this->getFileName($document);
+        $this->uploadToS3($filePath, $document);
+        return $this->sendSuccess(['document' => $filePath], 'uploaded successfully');
     }
 
 

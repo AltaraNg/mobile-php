@@ -47,6 +47,7 @@ Route::prefix('v1')->group(function () {
         Route::get('customers/{customer}/requests', [OrderRequestController::class, 'index'])->name('customers.order-requests');
         Route::resource('branches', BranchController::class);
         Route::post('/document/upload', [DocumentController::class, 'store']);
+        Route::post('/upload/document/s3', [DocumentController::class, 'uploadDocument']);
         Route::post('app/audit', [CustomerMobileAppAuditController::class, 'store']);
     });
     Route::prefix('otp')->group(function () {

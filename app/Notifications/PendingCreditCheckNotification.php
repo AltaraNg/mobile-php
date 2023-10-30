@@ -58,7 +58,7 @@ class PendingCreditCheckNotification extends Notification
             'customer_name' => $this->customer->first_name . ' ' . $this->customer->last_name,
             'product_name' => $this->product->name,
             'product_price' => $this->product->retail_price,
-            'url' => config('app.frontend_url') . "/credit-check/all?page=1&status=pending&searchTerm={$this->creditCheckVerification->id}"
+            'url' => config('app.frontend_url') . "/credit-check/all?page=1&status=pending&searchTerm={$this->creditCheckVerification->id}&ctype=mobile-loan"
         ]);
         // url('pending/credit/check/{id}', ['id' => $this->creditCheckVerification->id])
     }

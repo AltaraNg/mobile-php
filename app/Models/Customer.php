@@ -52,4 +52,9 @@ class Customer extends Authenticatable
         return $this->hasMany(Guarantor::class, 'customer_id');
     }
 
+    public function newDocuments()
+    {
+        return $this->morphMany(NewDocument::class, 'documentable');
+    }
+
 }

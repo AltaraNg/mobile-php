@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CustomerNotificationController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CreditCheckController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerMobileAppAuditController;
 use App\Http\Controllers\CustomerOrderController;
@@ -49,6 +50,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/document/upload', [DocumentController::class, 'store']);
         Route::post('/upload/document/s3', [DocumentController::class, 'uploadDocument']);
         Route::post('app/audit', [CustomerMobileAppAuditController::class, 'store']);
+        Route::get('credit-check-verification/{creditCheckerVerification}', [CreditCheckController::class, 'show']);
     });
     Route::prefix('otp')->group(function () {
         Route::post('send', [OtpController::class, 'sendOtp'])->name('otp.send');

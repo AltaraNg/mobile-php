@@ -135,7 +135,8 @@ class AuthenticationController extends Controller
      */
     public function user()
     {
-        return $this->sendSuccess([new CustomerResource(auth()->user()->load('verification'))], 'Customer profile fetched');
+        $user = auth()->user()->load(['verification', 'creditCheckerVerifications']);
+        return $this->sendSuccess([new CustomerResource($user)], 'Customer profile fetched');
     }
     private function setNotNullableFields()
     {

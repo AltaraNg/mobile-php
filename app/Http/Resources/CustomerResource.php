@@ -42,7 +42,7 @@ class CustomerResource extends JsonResource
             'included' => [
                 'orders' => OrderResource::collection($this->whenLoaded('orders')),
                 'verification' => new VerificationResource($this->whenLoaded('verification')),
-                'creditCheckerVerifications' => $this->customer->creditCheckerVerifications,
+                'creditCheckerVerifications' => $this->creditCheckerVerifications,
             ]
         ];
     }

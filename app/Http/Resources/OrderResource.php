@@ -36,7 +36,7 @@ class OrderResource extends JsonResource
                 'sales_category' => $this->salesCategory,
                 'repayment_cycle' => $this->repaymentCycle,
                 'late_fees' => $this->lateFee,
-                'status' => $this->status
+                'orderStatus' => $this->orderStatus
             ]
         ];
     }

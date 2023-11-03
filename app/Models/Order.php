@@ -55,4 +55,8 @@ class Order extends Model
     {
         return $this->hasMany(LateFee::class, 'order_id');
     }
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class, 'status_id');
+    }
 }

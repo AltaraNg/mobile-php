@@ -23,6 +23,7 @@ class OrderResource extends JsonResource
                 'product_price' => $this->product_price,
                 'down_payment' => $this->down_payment,
                 'repayment' => $this->repayment,
+                'customer_id' => $this->customer_id,
             ],
             'relationships' => [],
             'included' => [
@@ -34,7 +35,8 @@ class OrderResource extends JsonResource
                 'repayment_duration' => $this->repaymentDuration,
                 'sales_category' => $this->salesCategory,
                 'repayment_cycle' => $this->repaymentCycle,
-                'late_fees' => $this->lateFee
+                'late_fees' => $this->lateFee,
+                'orderStatus' => $this->orderStatus
             ]
         ];
     }

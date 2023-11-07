@@ -50,6 +50,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/document/upload', [DocumentController::class, 'store']);
         Route::post('/upload/document/s3', [DocumentController::class, 'uploadDocument']);
         Route::post('app/audit', [CustomerMobileAppAuditController::class, 'store']);
+        Route::get('recent/activities', [CustomerMobileAppAuditController::class, 'recentActivity']);
         Route::get('credit-check-verification/{creditCheckerVerification}', [CreditCheckController::class, 'show']);
     });
     Route::prefix('otp')->group(function () {

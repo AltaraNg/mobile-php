@@ -14,6 +14,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -60,7 +61,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-
+        Log::error($e);
         if ($request->is('api*')) {
             if ($e instanceof ValidationException) { //handle validation errors
                 $data = ["errors" => $e->validator->getMessageBag()->getMessages()];

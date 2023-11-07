@@ -25,7 +25,7 @@ class StoreCustomerMobileAppAudit extends FormRequest
     {
         return [
             'mobile_app_activity_id' => ['required', 'integer', 'exists:mobile_app_activities,id'],
-            'meta' => ['sometimes', 'string']
+            'meta' => ['sometimes']
         ];
     }
 }

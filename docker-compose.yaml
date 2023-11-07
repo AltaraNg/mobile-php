@@ -26,8 +26,8 @@ services:
     container_name: altara_mobile_webserver
     tty: true
     ports:
-      - "7070:80"
-      - "7071:443"
+      - "7072:80"
+      - "7073:443"
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/

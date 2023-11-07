@@ -10,4 +10,9 @@ class CustomerMobileAppAuditRepository extends BaseRepository
     {
         parent::__construct($model);
     }
+
+    public function query()
+    {
+        return $this->model->query();
+    }
 }

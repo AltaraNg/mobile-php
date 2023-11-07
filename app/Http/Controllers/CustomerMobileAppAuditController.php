@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class CustomerMobileAppAuditController extends Controller
 {
     private CustomerMobileAppAuditRepository $customerMobileAppAuditRepository;
-    public function __construct(CustomerMobileAppAuditRepository $customerMobileAppAuditRepository) {
+    public function __construct(CustomerMobileAppAuditRepository $customerMobileAppAuditRepository)
+    {
         $this->customerMobileAppAuditRepository = $customerMobileAppAuditRepository;
     }
 
@@ -20,5 +21,19 @@ class CustomerMobileAppAuditController extends Controller
         ];
         $this->customerMobileAppAuditRepository->create($data);
         return $this->sendSuccess([], "Audited successfully");
+    }
+
+
+    public function recentActivity(Request $request)
+    {
+        $activities =  $this->customerMobileAppAuditRepository->query()->where('customer_id', auth()->id())
+        ->whereHas('mobileAppActivity', function ($query) {
+             $query->where('is_admin', false);
+         })
+        ->with(['mobileAppActivity' => function ($query) {
+           return $query->where('is_admin', false);
+        }])->latest()->limit(10)->get();
+
+        return $this->sendSuccess(['activities' => $activities], "Recent activities retrieved successfully");
     }
 }

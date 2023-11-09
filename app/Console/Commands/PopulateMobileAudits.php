@@ -43,6 +43,7 @@ class PopulateMobileAudits extends Command
             ["name" => "Loan Request", "is_admin" => false],
             ["name" => "Send Verification", "is_admin" => true],
             ["name" => "Make Downpayment", "is_admin" => false],
+            ["name" => "Make Repayment", "is_admin" => false],
             ["name" => "Edit Profile", "is_admin" => true],
             ["name" => "Upload Documents", "is_admin" => true],
             ["name" => "View Loan Details", "is_admin" => true],

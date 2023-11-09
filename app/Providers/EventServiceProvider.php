@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\AppActivityEvent;
 use App\Events\LoanSubmissionRequestEvent;
+use App\Listeners\AppActivityListener;
 use App\Listeners\LoanSubmissionRequestListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         LoanSubmissionRequestEvent::class => [
             LoanSubmissionRequestListener::class
+        ],
+        AppActivityEvent::class => [
+            AppActivityListener::class,
         ]
     ];
 

@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Dtos\GuarantorDto;
+use App\Events\AppActivityEvent;
 use App\Events\LoanSubmissionRequestEvent;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\BusinessType;
 use App\Models\CreditCheckerVerification;
 use App\Models\DownPaymentRate;
+use App\Models\MobileAppActivity;
 use App\Models\Product;
 use App\Models\RepaymentDuration;
 use Illuminate\Support\Facades\Notification;
@@ -131,6 +133,12 @@ class CustomerOrderController extends Controller
             }
             // $this->sendCreditCheckMailToAdmin($customer, $product, $creditCheckerVerification);
             event(new LoanSubmissionRequestEvent($customer, $product, $creditCheckerVerification));
+
+            event(new AppActivityEvent(
+                MobileAppActivity::query()->where('slug', 'loan_request')->first(), 
+                $customer, 
+                ['credit_check' => $creditCheckerVerification->load(['product', 'repaymentDuration', 'repaymentCycle', 'downPaymentRate', 'businessType', 'documents'])])
+            );
             DB::commit();
             return $this->sendSuccess(['credit_check_verification' =>  $creditCheckerVerification], 'Credit check initiated and notification sent');
         } catch (\Throwable $th) {

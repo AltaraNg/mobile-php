@@ -47,6 +47,9 @@ class PopulateMobileAudits extends Command
             ["name" => "Edit Profile", "is_admin" => true],
             ["name" => "Upload Documents", "is_admin" => true],
             ["name" => "View Loan Details", "is_admin" => true],
+            ["name" => "Navigate to upload", "is_admin" => true],
+            ["name" => "Navigate to calculator", "is_admin" => true],
+            ["name" => "Loan Repayment Completed", "is_admin" => false],
         ];
 
         foreach ($auditTypes as $key => $value) {

@@ -119,6 +119,9 @@ class CustomerOrderController extends Controller
                     'business_type_id' => $businessType->id,
                     'product_id' => $product->id,
                     'repayment' => $request->input('repayment'),
+                    'loan_amount' => $request->input('loan_amount'),
+                    'down_payment' => $request->input('down_payment'),
+
                 ]);
 
                 $creditCheckerVerification->credit_check_no = $this->generateCreditCheckNumber($creditCheckerVerification->id, $customer_id);

@@ -18,6 +18,7 @@ use App\Events\AppActivityEvent;
 use App\Events\LoanSubmissionRequestEvent;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\CustomerResource;
+use App\Jobs\ProcessBankStatementJob;
 use App\Models\BusinessType;
 use App\Models\CreditCheckerVerification;
 use App\Models\DownPaymentRate;
@@ -74,23 +75,6 @@ class CustomerOrderController extends Controller
             $user = $request->user();
             $customer = $this->customerRepository->findById($user->id);
             // dd($customer);
-            $guarantors  = GuarantorDto::fromOrderApiRequest($request, $user->id);
-
-
-            foreach ($guarantors as $key => $guarantor) {
-                $guarantorDto  = GuarantorDto::fromSelf($guarantor);
-                Guarantor::query()->updateOrCreate(
-                    [
-                        'customer_id' => $guarantorDto->customer_id,
-                        'phone_number' => $guarantorDto->phone_number
-                    ],
-                    [
-                        'first_name' => $guarantorDto->first_name,
-                        'last_name' => $guarantorDto->last_name,
-                        'home_address' => $guarantorDto->home_address,
-                    ]
-                );
-            }
             $downpaymentRate = DownPaymentRate::query()->where('percent', 20)->first();
             $repaymentDuration = RepaymentDuration::query()->where('name', 'six_months')->first();
             $businessType = BusinessType::query()->where('slug', 'ap_starter_cash_loan-no_collateral')->first();
@@ -107,8 +91,27 @@ class CustomerOrderController extends Controller
 
 
             if ($customer->creditCheckerVerifications()->where('status', CreditCheckerVerification::PENDING)->exists()) {
-                $creditCheckerVerification = $customer->latestCreditCheckerVerifications()->where('status', CreditCheckerVerification::PENDING)->first();
+                $creditCheckerVerification = $customer->latestCreditCheckerVerifications()->with('documents')->where('status', CreditCheckerVerification::PENDING)->first();
+
             } else {
+                $guarantors  = GuarantorDto::fromOrderApiRequest($request, $user->id);
+
+
+                foreach ($guarantors as $key => $guarantor) {
+                    $guarantorDto  = GuarantorDto::fromSelf($guarantor);
+                    Guarantor::query()->updateOrCreate(
+                        [
+                            'customer_id' => $guarantorDto->customer_id,
+                            'phone_number' => $guarantorDto->phone_number
+                        ],
+                        [
+                            'first_name' => $guarantorDto->first_name,
+                            'last_name' => $guarantorDto->last_name,
+                            'home_address' => $guarantorDto->home_address,
+                        ]
+                    );
+                }
+               
                 $customer_id  = request()->user()->id;
                 $creditCheckerVerification = CreditCheckerVerification::create([
                     'customer_id' =>  request()->user()->id,
@@ -135,13 +138,16 @@ class CustomerOrderController extends Controller
                     $creditCheckerVerification->documents()->saveMany($customerDocuments);
                 }
             }
+            ProcessBankStatementJob::dispatch($creditCheckerVerification, $request->input('bank_statement_choice'));
             // $this->sendCreditCheckMailToAdmin($customer, $product, $creditCheckerVerification);
             event(new LoanSubmissionRequestEvent($customer, $product, $creditCheckerVerification));
 
-            event(new AppActivityEvent(
-                MobileAppActivity::query()->where('slug', 'loan_request')->first(), 
-                $customer, 
-                ['credit_check' => $creditCheckerVerification->load(['product', 'repaymentDuration', 'repaymentCycle', 'downPaymentRate', 'businessType', 'documents'])])
+            event(
+                new AppActivityEvent(
+                    MobileAppActivity::query()->where('slug', 'loan_request')->first(),
+                    $customer,
+                    ['credit_check' => $creditCheckerVerification->load(['product', 'repaymentDuration', 'repaymentCycle', 'downPaymentRate', 'businessType', 'documents'])]
+                )
             );
             DB::commit();
             return $this->sendSuccess(['credit_check_verification' =>  $creditCheckerVerification], 'Credit check initiated and notification sent');

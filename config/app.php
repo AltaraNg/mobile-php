@@ -61,6 +61,7 @@ return [
     'asset_url' => env('ASSET_URL', null),
 
     'frontend_url' => env('FRONTEND_URL', 'https://play.altaracredit.com'),
+    'bank_statement_url' => env('BANK_STATEMENT_URL', 'https://fast-alt-7790f3f68854.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------

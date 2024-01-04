@@ -43,7 +43,7 @@ class ProcessBankStatementJob implements ShouldQueue
             Log::info("Bank statement processing altered");
             return;
         }
-        Log::info("I got here");
+        Log::info("Processing bank statement with id: ". $bank_statement->id);
         $bank_statement_file_url = env('AWS_URL') . "/" . $bank_statement->document_url;
         $data = [
             'bank_statement_choice' => $this->bank_statement_choice,

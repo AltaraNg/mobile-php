@@ -38,9 +38,9 @@ class ProcessBankStatementJob implements ShouldQueue
     {
         $bank_statement = $this->creditCheckerVerification->documents()->where('document_type', 'bank_statement')->first();
         
-        Log::info("I got here");
+        Log::info("Bank statement pricessing started");
         if (!$bank_statement || !$this->bank_statement_choice) {
-            Log::info("I got here");
+            Log::info("Bank statement processing altered");
             return;
         }
         Log::info("I got here");
@@ -54,5 +54,6 @@ class ProcessBankStatementJob implements ShouldQueue
         $response =  Http::asMultipart()->post(
             config('app.bank_statement_url') . '/bank-statements', $data);
         Log::info($response);
+        Log::info("Bank statement processing completed");
     }
 }

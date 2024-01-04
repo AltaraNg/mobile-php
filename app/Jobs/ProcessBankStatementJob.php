@@ -38,7 +38,7 @@ class ProcessBankStatementJob implements ShouldQueue
     {
         $bank_statement = $this->creditCheckerVerification->documents()->where('document_type', 'bank_statement')->first();
         
-        Log::info("Bank statement pricessing started");
+        Log::info("Bank statement processing started");
         if (!$bank_statement || !$this->bank_statement_choice) {
             Log::info("Bank statement processing altered");
             return;
